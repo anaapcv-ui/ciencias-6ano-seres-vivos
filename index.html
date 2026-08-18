@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kit de Estudos — Ciências 6º ano | Colégio São José | Organização da Vida</title>
+<style>
+  :root{
+    --bg:#07130f; --bg2:#0c1c16; --card:#122019; --card2:#1a2c22;
+    --lime:#5cf2a8; --cyan:#3ad4e6; --teal:#1f9c7c; --green2:#178a63;
+    --pink:#ff77b0; --violet:#b98cff; --gold:#f5d97a; --red:#ff6a5a;
+    --text:#eaf5ee; --muted:#9fc0b0; --line:#24382d; --spark:#bafcdd;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;font-size:17px}
+  .sky{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+  .sky i{position:absolute;width:4px;height:4px;background:var(--spark);border-radius:50%;opacity:.5}
+  .glow{position:fixed;left:50%;top:-200px;transform:translateX(-50%);width:900px;height:480px;background:radial-gradient(ellipse at center,rgba(92,242,168,.20),rgba(92,242,168,0) 70%);z-index:0;pointer-events:none}
+  .wrap{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:0 18px 60px}
+  header.top{text-align:center;padding:46px 16px 10px}
+  .badge{display:inline-block;font-size:13px;letter-spacing:2px;color:var(--lime);border:1px solid var(--lime);border-radius:20px;padding:6px 16px;margin-bottom:16px;text-transform:uppercase}
+  h1{font-size:34px;margin:8px 0 6px;color:#fff;line-height:1.2}
+  h1 .g{color:var(--lime)}
+  .sub{color:var(--muted);font-size:16px;margin:0 auto;max-width:640px}
+  .escola{display:inline-block;margin-top:12px;background:var(--card2);border:1px solid var(--gold);border-radius:12px;padding:8px 16px;color:var(--gold);font-weight:700;font-size:15px}
+  .prova{display:block;margin:14px auto 0;max-width:540px;background:#2a0f0a;border:1px solid var(--red);border-radius:12px;padding:10px 18px;color:#ffd7d0;font-weight:600}
+
+  h2.sec{font-size:20px;color:var(--lime);margin:34px 0 14px;text-align:center}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+  a.mat{text-decoration:none;color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 20px 20px;display:block;transition:.15s;position:relative}
+  a.mat:hover{transform:translateY(-3px)}
+  a.mat .step{position:absolute;top:-12px;left:18px;font-size:12px;font-weight:800;padding:4px 12px;border-radius:20px;color:#04201f}
+  a.mat .ico{font-size:34px}
+  a.mat h3{margin:8px 0 4px;font-size:21px}
+  a.mat p{margin:0;color:var(--muted);font-size:15px}
+  .m1 .step{background:var(--lime)} .m1:hover{border-color:var(--lime)} .m1 h3{color:var(--lime)}
+  .m2 .step{background:var(--cyan)} .m2:hover{border-color:var(--cyan)} .m2 h3{color:var(--cyan)}
+  .m3 .step{background:var(--violet)} .m3:hover{border-color:var(--violet)} .m3 h3{color:var(--violet)}
+  .m4 .step{background:var(--red);color:#fff} .m4:hover{border-color:var(--red)} .m4 h3{color:#ff8b76}
+
+  .como{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-top:12px}
+  .como ol{margin:0;padding-left:22px}
+  .como li{margin:9px 0}
+  .como b{color:var(--gold)}
+  .mae{background:var(--card2);border:1px dashed var(--gold);border-radius:16px;padding:18px 22px;margin-top:16px}
+  .mae h3{color:var(--gold);margin:0 0 8px;font-size:19px}
+  .mae code{background:#07130f;border:1px solid var(--line);border-radius:6px;padding:2px 8px;color:var(--lime);font-size:15px}
+  .escopo{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 22px;margin-top:16px}
+  .escopo h3{color:var(--cyan);margin:0 0 8px;font-size:19px}
+  .escopo ul{margin:0;padding-left:20px;columns:2;column-gap:26px}
+  .escopo li{margin:5px 0;font-size:16px;break-inside:avoid}
+  @media(max-width:620px){.escopo ul{columns:1}}
+  .foot{text-align:center;color:var(--muted);font-size:13px;margin-top:30px}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+</style>
+</head>
+<body>
+<h2 class="sr-only">Página inicial do kit de estudos de Ciências do 6º ano do Colégio São José sobre a organização da vida, com links para leitura guiada, quiz, resumo e simulado.</h2>
+<div class="sky" id="sky"></div>
+<div class="glow"></div>
+
+<div class="wrap">
+  <header class="top">
+    <div class="badge">🔬 Expedição Microcosmo · Sonda Bioluz</div>
+    <h1>Kit de Estudos de <span class="g">Ciências</span><br>Organização da Vida</h1>
+    <p class="sub">Módulo 4 · livro <i>Ecos Ciências 6</i> (SM) · da vista de um ser vivo inteiro até bem dentro de uma célula — e de volta, subindo os níveis de organização.</p>
+    <div class="escola">🏫 6º ano · Colégio São José</div>
+    <div class="prova">📅 Avaliação de Ciências: <b>segunda-feira, 25/08/2026</b> · Prof.ª Rejane Fernandes</div>
+  </header>
+
+  <h2 class="sec">Sua jornada de estudo (nesta ordem 👇)</h2>
+  <div class="cards">
+    <a class="mat m1" href="leitura-guiada.html"><span class="step">PASSO 1</span>
+      <div class="ico">📖</div><h3>Leitura Guiada</h3>
+      <p>7 blocos de zoom, com “Pare e pense” e resposta modelo. Comece por aqui.</p></a>
+    <a class="mat m2" href="quiz.html"><span class="step">PASSO 2</span>
+      <div class="ico">🎯</div><h3>Quiz</h3>
+      <p>15 perguntas rápidas para testar o que entendeu. Gera código <b>MED</b>.</p></a>
+    <a class="mat m3" href="resumo.html"><span class="step">PASSO 3</span>
+      <div class="ico">🗺️</div><h3>Resumo</h3>
+      <p>Tabelas, cartas de virar (organelas), glossário e checklist.</p></a>
+    <a class="mat m4" href="simulado.html"><span class="step">PASSO 4</span>
+      <div class="ico">📝</div><h3>Simulado</h3>
+      <p>28 questões no estilo da prova, com afirmativas I, II, III e IV. Gera código <b>SIM</b>.</p></a>
+  </div>
+
+  <h2 class="sec">Como usar este material</h2>
+  <div class="como">
+    <ol>
+      <li><b>📖 Leitura Guiada</b> — leia com calma e responda com suas palavras. Cada bloco “liga” o próximo nível de zoom.</li>
+      <li><b>🎯 Quiz</b> — teste o que aprendeu logo depois de ler, com o assunto fresco.</li>
+      <li><b>🗺️ Resumo</b> — use para fechar exatamente as lacunas que o Quiz mostrou.</li>
+      <li><b>📝 Simulado</b> — só depois de tudo, encare o desafio final, valendo.</li>
+    </ol>
+    <p style="color:var(--muted);margin:10px 0 0">Tudo é salvo sozinho no navegador. Pode fechar e voltar depois que o progresso continua. 🔬</p>
+  </div>
+
+  <div class="escopo">
+    <h3>📋 O que cai na prova (páginas 124-126 e 129-133)</h3>
+    <ul>
+      <li>Características dos seres vivos</li>
+      <li>Vida e níveis de organização</li>
+      <li>A célula e a teoria celular</li>
+      <li>As três partes da célula (membrana, citoplasma, cromatina)</li>
+      <li>Célula procariótica × eucariótica (carioteca)</li>
+      <li>As organelas e suas funções</li>
+      <li>Célula animal × célula vegetal</li>
+      <li>Seres unicelulares e pluricelulares</li>
+      <li>Metabolismo: catabolismo e anabolismo</li>
+      <li>Nutrição: autótrofos e heterótrofos</li>
+      <li>Respiração celular</li>
+      <li>Sensibilidade e resposta a estímulos</li>
+      <li>Reprodução sexuada e assexuada</li>
+      <li>Níveis de organização (célula → organismo)</li>
+    </ul>
+  </div>
+
+  <div class="mae">
+    <h3>👩 Dica para a mãe (códigos de conclusão)</h3>
+    <p>Ao terminar o <b>Quiz</b> e o <b>Simulado</b>, aparece um código na tela:</p>
+    <p>🎯 Quiz → <code>MED-XX-YY</code> &nbsp;&nbsp; 📝 Simulado → <code>SIM-XX-YY</code></p>
+    <p style="margin:6px 0 0">O <b>XX</b> é o número de acertos (ex.: <code>SIM-24-KT</code> = 24 acertos) e <b>YY</b> são duas letras sorteadas. Assim você confere que a atividade foi feita até o fim e sabe como foi o desempenho.</p>
+  </div>
+
+  <p class="foot">Kit de Estudos · Ciências 6º ano · <b>Colégio São José</b> · Módulo 4 — Organização da Vida · fonte: livro <i>Ecos Ciências 6</i> (SM Aprendizagem) + material de revisão da professora Rejane Fernandes</p>
+</div>
+
+<script>
+(function(){
+  var s=document.getElementById('sky');
+  for(var i=0;i<70;i++){
+    var e=document.createElement('i');
+    e.style.left=(Math.random()*100)+'%';
+    e.style.top=(Math.random()*100)+'%';
+    e.style.opacity=(0.2+Math.random()*0.5);
+    e.style.transform='scale('+(0.5+Math.random()*1.4)+')';
+    s.appendChild(e);
+  }
+})();
+</script>
+</body>
+</html>
