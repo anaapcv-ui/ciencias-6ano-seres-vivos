@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leitura Guiada — Ciências 6º ano | Colégio São José | Organização da Vida</title>
+<style>
+  :root{
+    --bg:#07130f; --bg2:#0c1c16; --card:#122019; --card2:#1a2c22;
+    --lime:#5cf2a8; --cyan:#3ad4e6; --teal:#1f9c7c; --green2:#178a63;
+    --pink:#ff77b0; --violet:#b98cff; --gold:#f5d97a; --red:#ff6a5a;
+    --text:#eaf5ee; --muted:#9fc0b0; --line:#24382d;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;font-size:17px}
+  .wrap{max-width:880px;margin:0 auto;padding:0 16px 70px}
+
+  .save{position:sticky;top:0;z-index:30;background:#050d0a;border-bottom:1px solid var(--line);padding:8px 12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;font-size:13px}
+  .save span{color:var(--muted)}
+  .save button{background:var(--card2);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer}
+  .save button:hover{border-color:var(--lime)}
+
+  nav.mats{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:14px 0 6px}
+  nav.mats a{text-decoration:none;font-size:14px;padding:7px 14px;border-radius:20px;border:1px solid var(--line);color:var(--muted);background:var(--card)}
+  nav.mats a.on{background:var(--green2);color:#fff;border-color:var(--lime)}
+  nav.mats a:hover{border-color:var(--lime);color:var(--text)}
+
+  header.top{text-align:center;padding:26px 10px 6px}
+  .badge{display:inline-block;font-size:12px;letter-spacing:2px;color:var(--lime);border:1px solid var(--lime);border-radius:20px;padding:6px 16px;text-transform:uppercase}
+  h1{font-size:31px;margin:12px 0 6px;color:#fff;line-height:1.2}
+  h1 .g{color:var(--lime)}
+  .sub{color:var(--muted);max-width:640px;margin:0 auto;font-size:16px}
+
+  .bar{position:relative;height:12px;background:var(--card);border:1px solid var(--line);border-radius:20px;margin:22px 0 6px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--lime),var(--gold));transition:width .4s}
+  .barlab{text-align:center;color:var(--muted);font-size:14px;margin-bottom:24px}
+
+  .narr{border-left:3px solid var(--teal);padding-left:14px;color:var(--muted);font-style:italic;margin:14px 0}
+  .bloco{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--green2);border-radius:16px;padding:22px;margin:18px 0;position:relative}
+  .bloco.lock{opacity:.42;filter:grayscale(.5)}
+  .bloco.done{border-left-color:var(--cyan)}
+  .bnum{display:inline-block;font-size:12px;font-weight:800;letter-spacing:1px;background:var(--green2);color:#fff;border-radius:20px;padding:4px 12px}
+  .bloco.done .bnum{background:var(--cyan);color:#04201f}
+  .prof{float:right;font-size:12px;color:var(--teal);border:1px dashed var(--line);border-radius:20px;padding:4px 10px}
+  .bloco h2{font-size:23px;margin:12px 0 10px;color:var(--gold)}
+  .bloco p{margin:11px 0}
+  .bloco b{color:var(--lime)}
+  .postit{background:#3a3405;border:1px solid var(--gold);border-left:5px solid var(--gold);border-radius:10px;padding:12px 16px;margin:14px 0;color:#ffeeae;font-size:16px}
+  .postit b{color:var(--gold)}
+  .pega{background:#3a1014;border:1px solid var(--red);border-radius:10px;padding:12px 16px;margin:14px 0;color:#ffd6d0;font-size:16px}
+  .pega b{color:#ff9a90}
+
+  .pense{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:16px;margin-top:16px}
+  .pense h3{margin:0 0 10px;font-size:17px;color:var(--lime)}
+  .q{margin:12px 0}
+  .q label{display:block;font-size:16px;margin-bottom:6px}
+  .q textarea{width:100%;min-height:64px;background:#081410;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:10px;font-family:inherit;font-size:16px;resize:vertical}
+  .q textarea:focus{outline:none;border-color:var(--lime)}
+  .conf{background:var(--green2);color:#fff;border:none;border-radius:10px;padding:11px 20px;font-size:16px;font-weight:700;cursor:pointer;margin-top:6px}
+  .conf[disabled]{background:#243028;color:#6d7d72;cursor:not-allowed}
+  .aviso{color:var(--muted);font-size:14px;margin-top:8px}
+  .modelo{display:none;margin-top:14px;background:#0b2a20;border:1px solid var(--green2);border-radius:12px;padding:14px 16px}
+  .modelo h4{margin:0 0 8px;color:var(--lime);font-size:16px}
+  .modelo ol{margin:0;padding-left:20px}
+  .modelo li{margin:8px 0}
+  .auto{margin-top:14px;border-top:1px dashed var(--line);padding-top:12px}
+  .auto p{margin:0 0 8px;font-size:15px;color:var(--muted)}
+  .auto button{background:var(--card);border:1px solid var(--line);color:var(--text);border-radius:20px;padding:8px 14px;margin:4px 6px 0 0;font-size:14px;cursor:pointer}
+  .auto button:hover{border-color:var(--lime)}
+  .auto button.sel{background:var(--lime);color:#04201f;border-color:var(--lime);font-weight:700}
+
+  .fim{background:var(--card);border:1px solid var(--cyan);border-radius:16px;padding:24px;margin-top:26px}
+  .fim h2{color:var(--cyan);margin:0 0 6px;font-size:24px}
+  .prox{display:block;text-align:center;text-decoration:none;background:var(--cyan);color:#04201f;font-weight:800;border-radius:14px;padding:16px;margin-top:22px;font-size:18px}
+  .foot{text-align:center;color:var(--muted);font-size:13px;margin-top:26px}
+
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;z-index:60;padding:18px}
+  .modal.on{display:flex}
+  .modal .box{background:var(--card);border:1px solid var(--lime);border-radius:16px;padding:22px;max-width:460px;width:100%}
+  .modal h3{margin:0 0 10px;color:var(--lime)}
+  .modal textarea{width:100%;min-height:110px;background:#081410;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:10px;font-size:13px}
+  .modal .acts{display:flex;gap:10px;justify-content:flex-end;margin-top:14px}
+  .modal .acts button{border:none;border-radius:8px;padding:10px 16px;font-size:15px;cursor:pointer;background:var(--card2);color:var(--text);border:1px solid var(--line)}
+  .modal .acts button.ok{background:var(--lime);color:#04201f;font-weight:700;border-color:var(--lime)}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+</style>
+</head>
+<body>
+<h2 class="sr-only">Leitura guiada de Ciências do 6º ano do Colégio São José sobre a organização da vida: características dos seres vivos, células e organelas, metabolismo, reprodução e níveis de organização.</h2>
+
+<div class="save">
+  <span id="stamp">Progresso salvo automaticamente.</span>
+  <button onclick="expo()">📥 Exportar</button>
+  <button onclick="impo()">📤 Importar</button>
+  <button onclick="zerar()">🗑️ Zerar tudo</button>
+</div>
+
+<div class="wrap">
+  <nav class="mats">
+    <a class="on" href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a href="quiz.html">🎯 Quiz</a>
+    <a href="resumo.html">🗺️ Resumo</a>
+    <a href="simulado.html">📝 Simulado</a>
+  </nav>
+
+  <header class="top">
+    <div class="badge">🔬 Expedição Microcosmo · Sonda Bioluz</div>
+    <h1>Leitura <span class="g">Guiada</span><br>Organização da Vida: Seres Vivos, Células e Níveis</h1>
+    <p class="sub">Ciências · 6º ano · <b>Colégio São José</b> · livro <i>Ecos Ciências 6</i> (Módulo 4) · Prof.ª Rejane Fernandes · páginas 124-126 e 129-133 · Prova em 25/08/2026</p>
+  </header>
+
+  <div class="narr">Missão: você é o jovem aprendiz que pilota a <b>Sonda Bioluz</b>, um microscópio que encolhe e mergulha na vida. A viagem começa lá fora, olhando um ser vivo inteiro, entra numa única célula e depois volta subindo os níveis de organização até o corpo todo. Cada bloco lido liga o próximo nível de zoom. 🔬</div>
+
+  <div class="bar"><i id="fill"></i></div>
+  <div class="barlab" id="barlab">Zoom: 0 de 7 blocos</div>
+
+  <div id="blocos"></div>
+
+  <div class="fim" id="fim" style="display:none">
+    <h2>⚠️ Sala das Pegadinhas</h2>
+    <p>Você percorreu toda a organização da vida. Antes de desligar a Sonda Bioluz, decore estas 10 confusões que a prova adora cobrar:</p>
+    <ol id="pegs"></ol>
+    <a class="prox" href="quiz.html">Próximo passo → 🎯 Quiz (15 perguntas)</a>
+  </div>
+
+  <p class="foot">Kit de Estudos · Ciências 6º ano · Colégio São José · Módulo 4 — Organização da Vida · fonte: livro <i>Ecos Ciências 6</i> (SM) + material de revisão da professora</p>
+</div>
+
+<div class="modal" id="modal"><div class="box">
+  <h3 id="mtit"></h3>
+  <div id="mbody"></div>
+  <div class="acts"><button onclick="fecha()">Fechar</button><button class="ok" id="mok" style="display:none">Confirmar</button></div>
+</div></div>
+
+<script>
+/* ================= dados (baseados no livro Ecos Ciências 6, Módulo 4) ================= */
+var BLOCOS = [
+{t:"O que é vida? As características dos seres vivos", prof:"Zoom 1 · vista de fora",
+ p:[
+ "Tanto os <b>seres vivos</b> como os <b>elementos não vivos</b> fazem parte do meio ambiente. Os seres vivos são muito diferentes entre si e também se diferenciam da matéria inanimada (não viva), principalmente por apresentarem <b>material genético</b>, entre outras características.",
+ "Uma onça, um cogumelo, um cacto, uma bactéria e você são bem diferentes por fora, mas guardam as mesmas <b>características comuns a todos os seres vivos</b>. São elas: ter o corpo <b>formado por células</b> (organização celular); realizar <b>metabolismo</b>; apresentar um <b>ciclo de vida</b>; dar <b>respostas a estímulos</b> do ambiente; precisar de <b>alimento</b>; <b>crescer</b>; e <b>reproduzir-se</b>, transmitindo informações aos descendentes.",
+ "É o <b>conjunto</b> dessas características que define a vida. Uma pedra, por exemplo, não é um ser vivo porque não é formada por células, não realiza metabolismo, não cresce por si mesma nem se reproduz.",
+ "Guarde a lógica da nossa expedição: para entender um ser vivo, primeiro descemos até a <b>célula</b> (a menor peça) e depois voltamos subindo os <b>níveis de organização</b> — dos átomos até a biosfera. É esse caminho que a Sonda Bioluz vai fazer."
+ ],
+ postit:"As características comuns a todos os seres vivos: <b>células · metabolismo · ciclo de vida · resposta a estímulos · alimento · crescimento · reprodução</b>. O que separa os seres vivos da matéria não viva é, principalmente, ter <b>material genético</b>.",
+ pega:"<b>Cuidado:</b> não é o <b>movimento</b> que define um ser vivo (uma planta quase não se move e é viva; um carro se move e não é vivo). É o <b>conjunto</b> das características, começando por ser <b>formado por células</b>.",
+ qs:["Por que uma onça e um cacto, tão diferentes, são os dois seres vivos?",
+     "Cite quatro características comuns a todos os seres vivos.",
+     "Por que uma pedra não é um ser vivo?"],
+ mod:["Porque, apesar das diferenças de forma, os dois têm as mesmas características comuns a todos os seres vivos: são formados por células, realizam metabolismo, têm ciclo de vida, respondem a estímulos, precisam de alimento, crescem e se reproduzem.",
+      "Entre outras: ter o corpo formado por células, realizar metabolismo, apresentar ciclo de vida, responder a estímulos do ambiente, precisar de alimento, crescer e reproduzir-se.",
+      "Porque a pedra não apresenta as características dos seres vivos: não é formada por células, não realiza metabolismo, não cresce por si mesma nem se reproduz."]},
+
+{t:"A célula e suas três partes (teoria celular)", prof:"Zoom 2 · a menor peça",
+ p:[
+ "A <b>célula</b> é a <b>unidade estrutural do ser vivo</b>, responsável por sua forma e pelo modo como ele funciona. De acordo com a <b>teoria celular</b>, proposta no <b>século XIX</b>, todos os seres vivos são formados por células, e são elas as responsáveis pelos processos que permitem a sobrevivência dos seres vivos.",
+ "Ainda segundo a teoria celular, <b>cada célula é formada a partir de outra preexistente</b> — ou seja, as células têm capacidade de reprodução.",
+ "As observações ao longo do tempo revelaram que todas as células têm uma estrutura básica formada por <b>três componentes</b>: a <b>membrana plasmática</b>, o <b>citoplasma</b> e a <b>cromatina</b> (o material genético).",
+ "Cada parte tem seu papel. A <b>membrana plasmática</b> é uma película muito fina que envolve a célula, separando o interior do ambiente externo, e <b>controla a entrada e a saída de substâncias</b>. O <b>citoplasma</b> é o espaço ocupado pelo <b>citosol</b>, uma substância viscosa onde ficam diversas estruturas, entre elas as <b>organelas</b>. A <b>cromatina</b> é um material composto de <b>DNA</b> (e, em alguns casos, também de proteínas) que <b>controla o funcionamento da célula</b> e guarda as <b>informações passadas aos descendentes</b> durante a reprodução."
+ ],
+ postit:"As três partes básicas da célula, do jeito do livro: <b>membrana plasmática</b> (controla entrada e saída) · <b>citoplasma</b> (o citosol viscoso, com as organelas) · <b>cromatina</b> (o material genético, o DNA).",
+ pega:"<b>Atenção ao nome no livro:</b> o material genético é chamado de <b>cromatina</b>, e ele é composto de <b>DNA</b>. Na maioria das células, a cromatina fica separada do citoplasma por um <b>envoltório nuclear</b> (a carioteca) — assunto do próximo bloco.",
+ qs:["O que diz a teoria celular sobre a origem das células?",
+     "Quais são as três partes básicas de uma célula?",
+     "Qual é a função da membrana plasmática?"],
+ mod:["Que todos os seres vivos são formados por células e que cada célula é formada a partir de outra preexistente, ou seja, as células têm capacidade de reprodução. A teoria celular foi proposta no século XIX.",
+      "A membrana plasmática, o citoplasma e a cromatina (o material genético).",
+      "A membrana plasmática é uma película muito fina que envolve a célula, separando o interior do ambiente externo, e controla a entrada e a saída de substâncias."]},
+
+{t:"Tipos de células e as organelas", prof:"Zoom 3 · por dentro",
+ p:[
+ "Nem toda célula é igual. Em algumas, como as das <b>bactérias</b>, a cromatina fica solta no citosol — são as células <b>procarióticas</b>. Nelas encontramos a <b>membrana plasmática</b>, o <b>citosol</b>, o <b>material genético (cromatina)</b>, a <b>parede celular</b> e, às vezes, um <b>flagelo</b> (estrutura de locomoção).",
+ "Na célula <b>eucariótica</b> (do latim <i>eu</i>, 'verdadeiro') existe um <b>envoltório nuclear</b> — a <b>carioteca</b> — que separa a cromatina do citosol, delimitando o <b>núcleo celular</b>. Animais, plantas, fungos, algas e protozoários são formados por células eucarióticas.",
+ "As células eucarióticas têm estruturas chamadas <b>organelas</b>, onde acontece grande parte das atividades celulares. Cada organela tem uma função: a <b>mitocôndria</b> faz a <b>respiração celular</b> (obtém energia); o <b>ribossomo</b> produz <b>proteínas</b>; o <b>retículo endoplasmático</b> faz o <b>transporte de substâncias</b> (o rugoso ajuda na produção de proteínas e o liso produz lipídios); o <b>complexo golgiense</b> (de Golgi) <b>modifica, empacota e distribui</b> substâncias; o <b>lisossomo</b> faz a <b>digestão</b> dentro da célula; e o <b>centríolo</b> participa da <b>divisão celular</b>.",
+ "Existem diferenças entre a célula <b>animal</b> e a <b>vegetal</b>. A célula <b>vegetal</b> tem <b>parede celular</b>, <b>cloroplastos</b> (organela que faz a <b>fotossíntese</b>, produzindo alimento com a luz — e dá a cor verde às plantas) e <b>grandes vacúolos</b> (que armazenam água e substâncias). A célula <b>animal</b> <b>não</b> tem parede celular, cloroplastos nem grandes vacúolos."
+ ],
+ postit:"Organelas para decorar: <b>mitocôndria</b> = energia (respiração) · <b>ribossomo</b> = proteínas · <b>retículo</b> = transporte · <b>Golgi</b> = empacota e distribui · <b>lisossomo</b> = digestão · <b>centríolo</b> = divisão · <b>cloroplasto</b> = fotossíntese · <b>vacúolo</b> = armazena água.",
+ pega:"<b>Muito cobrado:</b> só a célula <b>vegetal</b> tem <b>parede celular</b>, <b>cloroplastos</b> e <b>grandes vacúolos</b>. E não troque as usinas: a <b>mitocôndria</b> faz respiração (energia); o <b>cloroplasto</b> faz fotossíntese (produz alimento com luz).",
+ qs:["Qual é a diferença entre uma célula procariótica e uma célula eucariótica?",
+     "O que é a carioteca e qual é a sua função?",
+     "Cite duas estruturas que a célula vegetal tem e a animal não tem."],
+ mod:["Na célula procariótica (como a da bactéria) a cromatina fica solta no citosol, sem envoltório. Na célula eucariótica existe a carioteca (envoltório nuclear), que separa a cromatina e delimita o núcleo celular. Animais, plantas, fungos, algas e protozoários têm células eucarióticas.",
+      "A carioteca é o envoltório nuclear que separa a cromatina do citosol, delimitando o núcleo celular na célula eucariótica.",
+      "Parede celular e cloroplastos (a célula vegetal também tem grandes vacúolos). A célula animal não possui essas estruturas."]},
+
+{t:"Metabolismo: nutrição e respiração", prof:"Zoom 3 · a usina da vida",
+ p:[
+ "Diversas substâncias — como <b>água</b>, <b>sais minerais</b>, <b>proteínas</b> e <b>carboidratos</b> — entram na composição dos seres vivos. Dentro do organismo, essas substâncias passam por <b>transformações químicas</b>. O conjunto dessas transformações recebe o nome de <b>metabolismo</b>.",
+ "O metabolismo tem duas vias. No <b>catabolismo</b>, moléculas complexas são <b>quebradas</b> em produtos mais simples; no <b>anabolismo</b>, acontece o contrário: moléculas complexas são <b>formadas</b> a partir de moléculas simples. A fotossíntese, a produção de proteínas, a digestão de nutrientes e a contração muscular são exemplos de <b>atividades metabólicas</b>.",
+ "Os seres vivos se alimentam de maneiras diferentes. Os que <b>produzem o próprio alimento</b>, como os seres fotossintetizantes, são os <b>autótrofos</b> — as <b>algas</b>, as <b>plantas</b> e certas <b>bactérias</b>. Os que <b>não produzem</b> o próprio alimento e precisam ingerir ou absorver matéria orgânica são os <b>heterótrofos</b> — os <b>animais</b>, os <b>fungos</b>, os <b>protozoários</b> e vários grupos de <b>bactérias</b>.",
+ "Grande parte da energia dos seres vivos vem da <b>respiração celular</b>, que acontece dentro das células (na mitocôndria). Nela, a <b>glicose</b> (obtida do alimento) reage com o <b>gás oxigênio</b>, e sobram <b>gás carbônico</b> e <b>água</b>, com <b>liberação de energia</b>. Em resumo: <b>glicose + gás oxigênio → gás carbônico + água + energia</b>."
+ ],
+ postit:"Cola de bolso: entram na composição dos seres vivos <b>água, sais minerais, proteínas e carboidratos</b>. Metabolismo = <b>catabolismo</b> (quebra) + <b>anabolismo</b> (constrói). Respiração celular: <b>glicose + gás oxigênio → gás carbônico + água + energia</b>.",
+ pega:"<b>Não inverta:</b> <b>autótrofo produz</b> o próprio alimento (algas, plantas, certas bactérias); <b>heterótrofo não produz</b> (animais, fungos, protozoários, muitas bactérias). E <b>catabolismo QUEBRA</b>; <b>anabolismo CONSTRÓI</b>.",
+ qs:["O que é metabolismo e quais são as suas duas vias?",
+     "Qual é a diferença entre autótrofos e heterótrofos? Dê um exemplo de cada.",
+     "Escreva a equação da respiração celular."],
+ mod:["Metabolismo é o conjunto das transformações químicas que ocorrem no interior dos seres vivos. Suas duas vias são o catabolismo, que quebra moléculas complexas em produtos mais simples, e o anabolismo, que forma moléculas complexas a partir de moléculas simples.",
+      "Autótrofos produzem o próprio alimento (como as algas, as plantas e certas bactérias); heterótrofos não produzem e precisam obter alimento (como os animais, os fungos, os protozoários e muitas bactérias).",
+      "Glicose + gás oxigênio → gás carbônico + água + energia. A respiração celular acontece no interior das células."]},
+
+{t:"Ciclo de vida, sensibilidade e respostas a estímulos", prof:"Zoom 2 · o tempo e os sentidos",
+ p:[
+ "Todo ser vivo apresenta um <b>ciclo de vida</b>, com etapas de <b>nascer, crescer, reproduzir-se, envelhecer e morrer</b>. A duração muda muito: algumas <b>araucárias</b> vivem centenas de anos, enquanto certas <b>borboletas</b> vivem cerca de uma semana.",
+ "Outra característica é a <b>sensibilidade</b>: todos os seres vivos percebem <b>estímulos</b> do ambiente — como variação de <b>temperatura</b> e de <b>luminosidade</b> — e são capazes de <b>reagir</b> a eles. Quando sentem frio, por exemplo, certos animais se expõem ao sol para aquecer o corpo.",
+ "Os movimentos também são respostas a estímulos. Muitos seres <b>unicelulares</b> têm <b>cílios</b> e <b>flagelos</b> para se mover na água. Nos <b>animais</b>, órgãos de locomoção permitem fugir do perigo ou buscar alimento. As <b>plantas</b> não são totalmente imóveis: a <b>flor onze-horas</b> (<i>Portulaca grandiflora</i>), por exemplo, <b>abre</b> nas horas de sol pleno e <b>fecha</b> no fim da tarde — uma reação ao estímulo luminoso.",
+ "Um exemplo do material da professora é a <b>dioneia</b>, planta carnívora cujas folhas viram <b>armadilhas</b>: cores e odores <b>atraem</b> insetos (estímulo) e, ao serem tocadas, as folhas <b>se fecham</b> (resposta), digerindo a presa. Por fim, as <b>adaptações</b> — características físicas ou de comportamento, como as asas das aves — favorecem a <b>sobrevivência</b> e a <b>reprodução</b> no ambiente."
+ ],
+ postit:"Etapas do ciclo de vida: <b>nascer, crescer, reproduzir-se, envelhecer, morrer</b>. Exemplos de resposta a estímulos: animal se expõe ao sol (temperatura); flor onze-horas abre/fecha (luz); dioneia fecha a folha (toque).",
+ pega:"<b>Estímulo × resposta:</b> o <b>estímulo</b> vem do ambiente (a luz, o frio, o toque do inseto); a <b>resposta</b> é o que o ser vivo faz (a onze-horas fechar, a dioneia se fechar). Não troque um pelo outro.",
+ qs:["Quais são as etapas de um ciclo de vida?",
+     "O que é sensibilidade e como as plantas mostram que reagem a estímulos?",
+     "No caso da dioneia, o que é o estímulo e o que é a resposta?"],
+ mod:["Nascer, crescer, reproduzir-se, envelhecer e morrer. A duração varia muito de uma espécie para outra.",
+      "Sensibilidade é a capacidade de perceber estímulos do ambiente (como temperatura e luminosidade) e reagir a eles. As plantas mostram isso, por exemplo, na flor onze-horas, que abre no sol pleno e fecha no fim da tarde — uma reação ao estímulo luminoso.",
+      "O estímulo são as cores e os odores da planta, que atraem o inseto, e o toque do animal na folha; a resposta é o fechamento da armadilha, que aprisiona a presa para digeri-la."]},
+
+{t:"Reprodução: sexuada e assexuada", prof:"Zoom 2 · gerar descendentes",
+ p:[
+ "Uma das características mais importantes dos seres vivos é a <b>capacidade de gerar descendentes</b>, ou seja, de se <b>reproduzir</b>. Procariontes, eucariontes, unicelulares ou pluricelulares, <b>todos</b> os seres vivos se reproduzem. A reprodução pode ser <b>sexuada</b> ou <b>assexuada</b>.",
+ "Na <b>reprodução sexuada</b>, na maioria das vezes participam <b>dois indivíduos</b>, e cada um fornece uma célula especializada, o <b>gameta</b>. Os gametas se unem num processo chamado <b>fecundação</b>, formando uma nova célula, a <b>célula-ovo</b> (ou <b>zigoto</b>), que se desenvolve e dá origem a um novo indivíduo. Como há união do material genético dos dois, os descendentes ficam com uma <b>combinação</b> das características dos pais. A fecundação pode ser <b>interna</b> (dentro do corpo, como nos seres humanos) ou <b>externa</b> (fora do corpo, como em muitos animais aquáticos).",
+ "A grande vantagem da reprodução sexuada é promover <b>maior variabilidade genética</b>, importante para a sobrevivência da espécie.",
+ "Na <b>reprodução assexuada</b>, um único indivíduo gera descendentes <b>idênticos</b> a ele. São três formas principais: a <b>divisão binária</b>, em que uma célula-mãe se divide em duas células-filhas iguais (ocorre em bactérias, amebas e algumas algas); a <b>fragmentação</b>, em que pedaços do corpo se soltam e cada um gera um novo organismo (algas e estrelas-do-mar, que também regeneram partes perdidas); e o <b>brotamento</b>, em que um <b>broto</b> se forma e pode soltar-se ou formar uma colônia (comum em plantas e em animais como esponjas e a hidra)."
+ ],
+ postit:"Sexuada: <b>2 indivíduos → gametas → fecundação → célula-ovo (zigoto)</b>, com mais variabilidade genética. Assexuada: <b>1 indivíduo → descendentes idênticos</b>, por divisão binária, fragmentação ou brotamento.",
+ pega:"<b>Pegadinha:</b> na reprodução <b>sexuada</b> os filhos são uma <b>combinação</b> dos pais (mais variabilidade); na <b>assexuada</b> os descendentes são <b>idênticos</b>. Divisão binária = bactérias/amebas · fragmentação = estrela-do-mar · brotamento = hidra.",
+ qs:["Qual é a diferença entre reprodução sexuada e assexuada?",
+     "O que são gametas, fecundação e célula-ovo?",
+     "Cite as três formas de reprodução assexuada e um exemplo de cada."],
+ mod:["Na reprodução sexuada participam, na maioria das vezes, dois indivíduos que fornecem gametas; os descendentes são uma combinação das características dos pais (maior variabilidade genética). Na reprodução assexuada um único indivíduo gera descendentes idênticos a ele.",
+      "Gametas são as células especializadas fornecidas pelos indivíduos na reprodução sexuada; a fecundação é a união dos gametas; a célula-ovo (ou zigoto) é a nova célula formada nessa união, que se desenvolve e dá origem a um novo indivíduo.",
+      "Divisão binária (bactérias e amebas), fragmentação (algas e estrelas-do-mar) e brotamento (a hidra e as esponjas)."]},
+
+{t:"Níveis de organização: da célula ao organismo", prof:"Zoom 5 · voltando a crescer",
+ p:[
+ "Agora a Sonda Bioluz faz o caminho de volta, aumentando o zoom. Nos seres pluricelulares, as células se organizam em <b>níveis</b>, um dentro do outro.",
+ "Os agrupamentos de <b>células</b> semelhantes que desempenham a <b>mesma função</b> originam os <b>tecidos</b> — por exemplo, o <b>tecido muscular</b>. Diferentes tecidos podem se associar e atuar juntos, constituindo os <b>órgãos</b>. As artérias e as veias, por exemplo, são órgãos formados por pelo menos dois tipos de tecido (epitelial e muscular), e realizam funções que os tecidos não fariam sozinhos.",
+ "Os diferentes órgãos podem atuar em conjunto para desempenhar funções específicas, formando os <b>sistemas</b>. O <b>sistema digestório</b>, por exemplo, é composto por vários órgãos (estômago, intestinos e pâncreas) que atuam juntos na digestão; os <b>rins</b> e a <b>bexiga</b> fazem parte do <b>sistema urinário</b>. Os sistemas estão <b>interligados</b>, e essa integração é essencial para o funcionamento adequado do <b>organismo</b> — o ser vivo inteiro.",
+ "Então a escada dos níveis de organização, do menor para o maior, fica assim: <b>célula → tecido → órgão → sistema → organismo</b>. E, no quadro maior, essa hierarquia da vida vai desde os <b>átomos</b> até a <b>biosfera</b>, o conjunto de todas as regiões da Terra onde existe vida."
+ ],
+ postit:"A escada para decorar: <b>célula → tecido → órgão → sistema → organismo</b>. Exemplos: célula muscular → tecido muscular → coração → sistema circulatório → o corpo. A hierarquia geral da vida vai dos <b>átomos até a biosfera</b>.",
+ pega:"<b>Ordem que a prova troca:</b> o <b>tecido</b> vem logo depois da <b>célula</b> (agrupamento de células iguais), e só então vêm órgão, sistema e organismo. Um <b>órgão</b> é feito de vários <b>tecidos</b>; um <b>sistema</b> é feito de vários <b>órgãos</b>.",
+ qs:["Escreva, em ordem, os níveis de organização do menor para o maior.",
+     "O que é um tecido? Dê um exemplo.",
+     "Como vários órgãos formam um sistema? Dê um exemplo."],
+ mod:["Célula → tecido → órgão → sistema → organismo.",
+      "Tecido é um agrupamento de células semelhantes que desempenham a mesma função, como o tecido muscular. Diferentes tecidos podem se associar para formar os órgãos.",
+      "Os diferentes órgãos atuam em conjunto para desempenhar funções específicas, constituindo os sistemas. Por exemplo, o sistema digestório é composto por estômago, intestinos e pâncreas, que atuam juntos na digestão dos alimentos."]}
+];
+
+var PEGAS = [
+"<b>Ser vivo × não vivo:</b> o que define a vida é o <b>conjunto</b> de características (células, metabolismo, ciclo de vida, resposta a estímulos, alimento, reprodução), não o movimento. O que mais separa da matéria não viva é ter <b>material genético</b>.",
+"<b>As 3 partes da célula (livro):</b> membrana plasmática (controla entrada/saída), citoplasma (o citosol, com as organelas) e <b>cromatina</b> (o material genético / DNA).",
+"<b>Procariótica × eucariótica:</b> procariótica (bactéria) NÃO tem envoltório nuclear (cromatina solta); eucariótica TEM a <b>carioteca</b>, que delimita o <b>núcleo celular</b>.",
+"<b>Mitocôndria × cloroplasto:</b> mitocôndria faz <b>respiração</b> (energia); cloroplasto faz <b>fotossíntese</b> (produz alimento com luz). Ribossomo faz proteínas; lisossomo faz digestão.",
+"<b>Célula animal × vegetal:</b> só a <b>vegetal</b> tem <b>parede celular</b>, <b>cloroplastos</b> e <b>grandes vacúolos</b>. A membrana plasmática (não a parede) é que controla a entrada e a saída.",
+"<b>Metabolismo:</b> <b>catabolismo</b> QUEBRA moléculas; <b>anabolismo</b> CONSTRÓI moléculas. Respiração celular: glicose + gás oxigênio → gás carbônico + água + energia.",
+"<b>Autótrofo × heterótrofo:</b> autótrofo <b>produz</b> o próprio alimento (algas, plantas, certas bactérias); heterótrofo <b>não produz</b> (animais, fungos, protozoários, muitas bactérias).",
+"<b>Estímulo × resposta:</b> o estímulo vem do ambiente (luz, frio, toque); a resposta é o que o ser vivo faz (a onze-horas fecha, o animal se aquece ao sol).",
+"<b>Reprodução:</b> <b>sexuada</b> = 2 indivíduos, gametas, fecundação, célula-ovo, filhos com <b>variabilidade</b>. <b>Assexuada</b> = 1 indivíduo, filhos <b>idênticos</b> (divisão binária, fragmentação, brotamento).",
+"<b>Níveis de organização:</b> célula → tecido → órgão → sistema → organismo. Órgão é feito de vários tecidos; sistema é feito de vários órgãos. A hierarquia geral vai dos átomos até a biosfera."
+];
+
+/* ================= estado + salvamento ================= */
+var KEY='cie6sj_leitura_v1', mem={};
+var state = {resp:{}, feito:{}, auto:{}, ts:null};
+
+function save(){ state.ts=new Date().toISOString();
+  var s=JSON.stringify(state);
+  try{ localStorage.setItem(KEY,s); }catch(e){ mem[KEY]=s; }
+  stamp(); }
+function load(){ var r=null;
+  try{ r=localStorage.getItem(KEY); }catch(e){ r=mem[KEY]||null; }
+  if(!r) r=mem[KEY]||null;
+  if(r){ try{ var o=JSON.parse(r); state.resp=o.resp||{}; state.feito=o.feito||{}; state.auto=o.auto||{}; state.ts=o.ts||null; }catch(e){} } }
+function stamp(){ var el=document.getElementById('stamp');
+  if(!state.ts){ el.textContent='Progresso salvo automaticamente.'; return; }
+  var d=new Date(state.ts);
+  el.textContent='💾 Salvo em '+d.toLocaleDateString('pt-BR')+' às '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}); }
+
+/* ================= modal ================= */
+function abre(t,html,okTxt,onOk){
+  document.getElementById('mtit').innerHTML=t;
+  document.getElementById('mbody').innerHTML=html;
+  var ok=document.getElementById('mok');
+  if(okTxt){ ok.style.display=''; ok.textContent=okTxt; ok.onclick=onOk; } else { ok.style.display='none'; }
+  document.getElementById('modal').classList.add('on');
+}
+function fecha(){ document.getElementById('modal').classList.remove('on'); }
+function expo(){ abre('📥 Exportar progresso','<p style="font-size:14px;color:#9fc0b0">Copie todo o texto abaixo e guarde num bloco de notas. Para voltar, use o botão Importar.</p><textarea id="expTA" readonly>'+JSON.stringify(state)+'</textarea>'); setTimeout(function(){var t=document.getElementById('expTA'); t.focus(); t.select();},80); }
+function impo(){ abre('📤 Importar progresso','<p style="font-size:14px;color:#9fc0b0">Cole aqui o texto que você exportou antes:</p><textarea id="impTA"></textarea>','Importar',function(){
+  try{ var o=JSON.parse(document.getElementById('impTA').value);
+    state.resp=o.resp||{}; state.feito=o.feito||{}; state.auto=o.auto||{}; save(); fecha(); render();
+  }catch(e){ abre('⚠️ Não deu certo','<p>Esse texto não parece ser um arquivo de progresso válido. Confira se copiou tudo.</p>'); } }); }
+function zerar(){ abre('🗑️ Zerar tudo','<p>Isso apaga todas as respostas desta leitura guiada. Tem certeza?</p>','Sim, apagar',function(){
+  state={resp:{},feito:{},auto:{},ts:null};
+  try{ localStorage.removeItem(KEY); }catch(e){}
+  delete mem[KEY]; fecha(); render(); stamp(); }); }
+
+/* ================= render ================= */
+function render(){
+  var host=document.getElementById('blocos'); host.innerHTML='';
+  BLOCOS.forEach(function(b,i){
+    var libre = (i===0) || state.feito[i-1];
+    var d=document.createElement('div');
+    d.className='bloco'+(libre?'':' lock')+(state.feito[i]?' done':'');
+    var h='<span class="bnum">BLOCO '+(i+1)+'</span><span class="prof">'+b.prof+'</span><h2>'+b.t+'</h2>';
+    if(!libre){ h+='<p style="color:var(--muted)">🔒 Termine o bloco anterior para liberar este nível de zoom.</p>'; d.innerHTML=h; host.appendChild(d); return; }
+    b.p.forEach(function(par){ h+='<p>'+par+'</p>'; });
+    if(b.postit) h+='<div class="postit">📌 <b>Dica de prova:</b> '+b.postit+'</div>';
+    if(b.pega) h+='<div class="pega">⚠️ <b>Alerta de pegadinha:</b> '+b.pega+'</div>';
+    h+='<div class="pense"><h3>✍️ Pare e pense</h3>';
+    b.qs.forEach(function(q,j){
+      var v=(state.resp[i]&&state.resp[i][j])?state.resp[i][j]:'';
+      h+='<div class="q"><label>'+(j+1)+'. '+q+'</label><textarea data-b="'+i+'" data-q="'+j+'">'+v.replace(/</g,'&lt;')+'</textarea></div>';
+    });
+    h+='<button class="conf" id="c'+i+'" disabled>Conferir minhas respostas</button><div class="aviso" id="a'+i+'"></div>';
+    h+='<div class="modelo" id="m'+i+'"><h4>✅ Resposta modelo</h4><ol>';
+    b.mod.forEach(function(m){ h+='<li>'+m+'</li>'; });
+    h+='</ol><div class="auto"><p>Como você se saiu? (marque para liberar o próximo bloco)</p>'+
+       '<button data-au="'+i+'" data-v="1">🎯 Acertei em cheio</button>'+
+       '<button data-au="'+i+'" data-v="2">🤔 Mais ou menos</button>'+
+       '<button data-au="'+i+'" data-v="3">📖 Preciso reler</button></div></div>';
+    h+='</div>';
+    d.innerHTML=h; host.appendChild(d);
+  });
+
+  Array.prototype.forEach.call(host.querySelectorAll('textarea'),function(ta){
+    ta.addEventListener('input',function(){
+      var i=+ta.dataset.b, j=+ta.dataset.q;
+      if(!state.resp[i]) state.resp[i]={};
+      state.resp[i][j]=ta.value; save(); checa(i);
+    });
+  });
+  Array.prototype.forEach.call(host.querySelectorAll('.conf'),function(bt){
+    bt.addEventListener('click',function(){
+      var i=+bt.id.slice(1);
+      document.getElementById('m'+i).style.display='block';
+      bt.textContent='Respostas modelo abertas ✔';
+      restaura(i);
+    });
+  });
+  Array.prototype.forEach.call(host.querySelectorAll('[data-au]'),function(bt){
+    bt.addEventListener('click',function(){
+      var i=+bt.dataset.au;
+      state.auto[i]=bt.dataset.v; state.feito[i]=true; save(); render();
+      var el=document.getElementById('blocos').children[Math.min(i+1,BLOCOS.length-1)];
+      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+
+  BLOCOS.forEach(function(b,i){ checa(i); if(state.feito[i]){ var m=document.getElementById('m'+i); if(m){ m.style.display='block'; restaura(i); var c=document.getElementById('c'+i); if(c) c.textContent='Respostas modelo abertas ✔'; } } });
+  barra();
+}
+function restaura(i){
+  var v=state.auto[i]; if(!v) return;
+  Array.prototype.forEach.call(document.querySelectorAll('[data-au="'+i+'"]'),function(b){ b.classList.toggle('sel', b.dataset.v===v); });
+}
+function checa(i){
+  var bt=document.getElementById('c'+i); if(!bt) return;
+  var r=state.resp[i]||{}, ok=true;
+  for(var j=0;j<BLOCOS[i].qs.length;j++){ if(!r[j] || r[j].trim().length<3){ ok=false; break; } }
+  bt.disabled=!ok;
+  var av=document.getElementById('a'+i);
+  if(av) av.textContent = ok ? '' : 'Responda as 3 perguntas (pelo menos 3 letras em cada) para liberar a conferência.';
+}
+function barra(){
+  var n=0; BLOCOS.forEach(function(b,i){ if(state.feito[i]) n++; });
+  document.getElementById('fill').style.width=(n/BLOCOS.length*100)+'%';
+  document.getElementById('barlab').textContent='Zoom: '+n+' de '+BLOCOS.length+' blocos';
+  document.getElementById('fim').style.display = (n===BLOCOS.length)?'block':'none';
+}
+(function(){
+  var ol=document.getElementById('pegs');
+  PEGAS.forEach(function(p){ var li=document.createElement('li'); li.innerHTML=p; li.style.margin='10px 0'; ol.appendChild(li); });
+  load(); render(); stamp();
+})();
+</script>
+</body>
+</html>
