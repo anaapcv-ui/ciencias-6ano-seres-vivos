@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — Ciências 6º ano | Colégio São José | Organização da Vida</title>
+<style>
+  :root{
+    --bg:#07130f; --card:#122019; --card2:#1a2c22;
+    --lime:#5cf2a8; --cyan:#3ad4e6; --teal:#1f9c7c; --green2:#178a63;
+    --pink:#ff77b0; --violet:#b98cff; --gold:#f5d97a; --red:#ff6a5a;
+    --text:#eaf5ee; --muted:#9fc0b0; --line:#24382d;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;font-size:18px}
+  .wrap{max-width:900px;margin:0 auto;padding:0 16px 70px}
+  .save{position:sticky;top:0;z-index:30;background:#050d0a;border-bottom:1px solid var(--line);padding:8px 12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;font-size:13px}
+  .save span{color:var(--muted)}
+  .save button{background:var(--card2);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer}
+  .save button:hover{border-color:var(--lime)}
+  nav.mats{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:14px 0 6px}
+  nav.mats a{text-decoration:none;font-size:14px;padding:7px 14px;border-radius:20px;border:1px solid var(--line);color:var(--muted);background:var(--card)}
+  nav.mats a.on{background:var(--violet);color:#100a20;border-color:var(--violet);font-weight:700}
+  nav.mats a:hover{border-color:var(--lime);color:var(--text)}
+  header.top{text-align:center;padding:24px 10px 6px}
+  .badge{display:inline-block;font-size:12px;letter-spacing:2px;color:var(--violet);border:1px solid var(--violet);border-radius:20px;padding:6px 16px;text-transform:uppercase}
+  h1{font-size:32px;margin:12px 0 6px;color:#fff;line-height:1.2}
+  h1 .g{color:var(--violet)}
+  .sub{color:var(--muted);font-size:16px;max-width:640px;margin:0 auto}
+
+  h2.sec{font-size:24px;color:var(--cyan);margin:38px 0 6px;border-bottom:2px solid var(--line);padding-bottom:8px}
+  .lead{color:var(--muted);font-size:16px;margin:0 0 14px}
+
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+  .c{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--cyan);border-radius:14px;padding:16px 18px}
+  .c h3{margin:0 0 8px;font-size:19px;color:var(--gold)}
+  .c p{margin:6px 0}
+  .c b{color:var(--lime)}
+  .c ul{margin:6px 0;padding-left:20px}
+  .c li{margin:5px 0}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:17px;background:var(--card);border-radius:14px;overflow:hidden}
+  th,td{border:1px solid var(--line);padding:11px 13px;text-align:left}
+  th{background:var(--card2);color:var(--gold);font-size:16px}
+  td b{color:var(--lime)}
+
+  .postit{background:#3a3405;border:1px solid var(--gold);border-left:5px solid var(--gold);border-radius:10px;padding:13px 16px;margin:14px 0;color:#ffeeae}
+  .postit b{color:var(--gold)}
+  .pega{background:#3a1014;border:1px solid var(--red);border-radius:10px;padding:13px 16px;margin:14px 0;color:#ffd6d0}
+  .pega b{color:#ff9a90}
+
+  .flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:8px}
+  .flip{perspective:1000px;height:210px;cursor:pointer}
+  .fin{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+  .flip.on .fin{transform:rotateY(180deg)}
+  .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:16px;display:flex;flex-direction:column;justify-content:center;border:1px solid var(--line)}
+  .front{background:var(--card2);color:var(--gold);font-weight:700;font-size:18px;text-align:center}
+  .front small{display:block;color:var(--muted);font-weight:400;font-size:13px;margin-top:10px}
+  .back{background:#12271f;border-color:var(--green2);transform:rotateY(180deg);color:#d8f5e9;font-size:15px;overflow:auto}
+
+  .glos dt{color:var(--gold);font-weight:700;margin-top:12px;font-size:17.5px}
+  .glos dd{margin:3px 0 0 0;color:var(--text);font-size:16.5px}
+
+  .chk{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .chk label{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--line);cursor:pointer;font-size:17px}
+  .chk label:last-child{border-bottom:none}
+  .chk input{margin-top:5px;width:18px;height:18px;accent-color:var(--lime)}
+  .chk .done{color:var(--muted);text-decoration:line-through}
+  .barra{height:12px;background:var(--card2);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin:12px 0 4px}
+  .barra i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--lime),var(--cyan));transition:width .35s}
+  .barlab{text-align:center;color:var(--muted);font-size:14px}
+
+  .prox{display:block;text-align:center;text-decoration:none;background:var(--cyan);color:#04201f;font-weight:800;border-radius:14px;padding:16px;margin-top:30px;font-size:18px}
+  .foot{text-align:center;color:var(--muted);font-size:13px;margin-top:26px}
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;z-index:60;padding:18px}
+  .modal.on{display:flex}
+  .modal .box{background:var(--card);border:1px solid var(--cyan);border-radius:16px;padding:22px;max-width:460px;width:100%}
+  .modal h3{margin:0 0 10px;color:var(--cyan)}
+  .modal textarea{width:100%;min-height:110px;background:#081410;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:10px;font-size:13px}
+  .modal .acts{display:flex;gap:10px;justify-content:flex-end;margin-top:14px}
+  .modal .acts button{border-radius:8px;padding:10px 16px;font-size:15px;cursor:pointer;background:var(--card2);color:var(--text);border:1px solid var(--line)}
+  .modal .acts button.ok{background:var(--cyan);color:#04201f;font-weight:700;border-color:var(--cyan)}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+</style>
+</head>
+<body>
+<h2 class="sr-only">Resumo de Ciências do 6º ano do Colégio São José sobre a organização da vida.</h2>
+
+<div class="save">
+  <span id="stamp">Progresso salvo automaticamente.</span>
+  <button onclick="expo()">📥 Exportar</button>
+  <button onclick="impo()">📤 Importar</button>
+  <button onclick="zerar()">🗑️ Zerar tudo</button>
+</div>
+
+<div class="wrap">
+  <nav class="mats">
+    <a href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a href="quiz.html">🎯 Quiz</a>
+    <a class="on" href="resumo.html">🗺️ Resumo</a>
+    <a href="simulado.html">📝 Simulado</a>
+  </nav>
+
+  <header class="top">
+    <div class="badge">🗺️ Mapa da Sonda Bioluz</div>
+    <h1>Resumo de <span class="g">Ciências</span><br>Organização da Vida</h1>
+    <p class="sub">6º ano · <b>Colégio São José</b> · livro <i>Ecos Ciências 6</i> (Módulo 4) · Prof.ª Rejane Fernandes · Prova em 25/08/2026</p>
+  </header>
+
+  <!-- 1 -->
+  <h2 class="sec">1 · As características dos seres vivos</h2>
+  <div class="cards">
+    <div class="c"><h3>🌱 O que é ter vida</h3>
+      <p>Seres vivos e não vivos fazem parte do ambiente. Os seres vivos se diferenciam da matéria não viva principalmente por terem <b>material genético</b>.</p>
+      <p>É o <b>conjunto</b> de características que define a vida — não o movimento.</p></div>
+    <div class="c"><h3>✅ Características comuns</h3>
+      <ul>
+        <li>Corpo formado por <b>células</b></li>
+        <li>Realizam <b>metabolismo</b></li>
+        <li>Têm <b>ciclo de vida</b></li>
+        <li>Dão <b>resposta a estímulos</b></li>
+        <li>Precisam de <b>alimento</b></li>
+        <li><b>Crescem</b> e se <b>reproduzem</b></li>
+      </ul></div>
+    <div class="c"><h3>♻️ Ciclo de vida</h3>
+      <p><b>Nascer → crescer → reproduzir-se → envelhecer → morrer.</b></p>
+      <p>A duração varia: <b>araucária</b> vive centenas de anos; certas <b>borboletas</b>, cerca de 1 semana.</p></div>
+  </div>
+
+  <!-- 2 -->
+  <h2 class="sec">2 · A célula e suas três partes</h2>
+  <p class="lead">A <b>célula</b> é a <b>unidade estrutural</b> do ser vivo. Pela <b>teoria celular</b> (século XIX), todos os seres vivos são formados por células e <b>cada célula vem de outra preexistente</b>.</p>
+  <table>
+    <tr><th>Parte</th><th>O que é / função</th></tr>
+    <tr><td><b>Membrana plasmática</b></td><td>Película fina que envolve a célula; <b>controla a entrada e a saída</b> de substâncias</td></tr>
+    <tr><td><b>Citoplasma</b></td><td>O <b>citosol</b> (substância viscosa) onde ficam as <b>organelas</b></td></tr>
+    <tr><td><b>Cromatina</b></td><td>O <b>material genético (DNA)</b>; controla o funcionamento da célula e passa as informações aos descendentes</td></tr>
+  </table>
+  <div class="postit">📌 <b>Do livro:</b> as três partes básicas são <b>membrana plasmática, citoplasma e cromatina</b>. Na maioria das células, a cromatina fica separada do citoplasma pelo <b>envoltório nuclear</b> (a carioteca).</div>
+
+  <!-- 3 -->
+  <h2 class="sec">3 · Tipos de célula</h2>
+  <table>
+    <tr><th>&nbsp;</th><th>PROCARIÓTICA</th><th>EUCARIÓTICA</th></tr>
+    <tr><td><b>Núcleo</b></td><td><b>Sem</b> envoltório nuclear; a cromatina fica <b>solta</b> no citosol</td><td><b>Com</b> carioteca (envoltório nuclear), que delimita o <b>núcleo celular</b></td></tr>
+    <tr><td><b>Exemplos</b></td><td><b>Bactérias</b></td><td>Animais, plantas, fungos, algas e protozoários</td></tr>
+    <tr><td><b>Detalhes</b></td><td>Tem membrana, citosol, cromatina, <b>parede celular</b> e às vezes flagelo</td><td>Tem <b>organelas</b>, onde ocorre grande parte das atividades</td></tr>
+  </table>
+  <div class="pega">⚠️ <b>Nome que a prova cobra:</b> <b>eucariótica</b> vem do latim <i>eu</i> = "verdadeiro" (tem núcleo verdadeiro, delimitado). A bactéria é <b>procariótica</b> (núcleo não delimitado).</div>
+
+  <!-- 4 -->
+  <h2 class="sec">4 · As organelas e suas funções</h2>
+  <p class="lead">Clique nos cartões para virar e conferir a função de cada organela. 👇</p>
+  <div class="flips" id="flips1"></div>
+  <div class="postit">📌 <b>Não troque:</b> <b>mitocôndria</b> = respiração (energia); <b>cloroplasto</b> = fotossíntese (produz alimento com luz). <b>Ribossomo</b> = proteínas; <b>lisossomo</b> = digestão.</div>
+
+  <!-- 5 -->
+  <h2 class="sec">5 · Célula animal × célula vegetal</h2>
+  <table>
+    <tr><th>Estrutura</th><th>Animal</th><th>Vegetal</th></tr>
+    <tr><td>Membrana plasmática, citoplasma, núcleo, mitocôndrias, ribossomos</td><td>✅ Sim</td><td>✅ Sim</td></tr>
+    <tr><td><b>Parede celular</b></td><td>❌ Não</td><td>✅ Sim</td></tr>
+    <tr><td><b>Cloroplastos</b></td><td>❌ Não</td><td>✅ Sim</td></tr>
+    <tr><td><b>Grandes vacúolos</b></td><td>❌ Não (pequenos)</td><td>✅ Sim</td></tr>
+  </table>
+  <div class="pega">⚠️ <b>Só a vegetal</b> tem parede celular, cloroplastos e grandes vacúolos. Quem controla a entrada e a saída de substâncias é a <b>membrana plasmática</b>, não a parede.</div>
+
+  <!-- 6 -->
+  <h2 class="sec">6 · Seres unicelulares e pluricelulares</h2>
+  <div class="cards">
+    <div class="c"><h3>🦠 Unicelulares</h3>
+      <p>Formados por <b>uma única célula</b>: <b>bactérias</b>, alguns fungos e algas, e os <b>protozoários</b> (ex.: a ameba, <i>Amoeba proteus</i>).</p></div>
+    <div class="c"><h3>🐾 Pluricelulares</h3>
+      <p>Formados por <b>várias células</b>: os <b>seres humanos</b>, os demais animais, as plantas e muitos fungos e algas.</p></div>
+    <div class="c"><h3>🧵 Tecidos</h3>
+      <p>Nos pluricelulares, agrupamentos de <b>células iguais</b> com a <b>mesma função</b> formam os <b>tecidos</b> (ex.: tecido muscular; epiderme nas plantas).</p></div>
+  </div>
+
+  <!-- 7 -->
+  <h2 class="sec">7 · Metabolismo, nutrição e respiração</h2>
+  <div class="cards">
+    <div class="c"><h3>⚗️ Metabolismo</h3>
+      <p>Conjunto das <b>transformações químicas</b> no organismo. Duas vias:</p>
+      <ul>
+        <li><b>Catabolismo:</b> QUEBRA moléculas complexas em simples</li>
+        <li><b>Anabolismo:</b> CONSTRÓI moléculas complexas a partir de simples</li>
+      </ul>
+      <p>Substâncias que entram na composição: <b>água, sais minerais, proteínas e carboidratos</b>.</p></div>
+    <div class="c"><h3>🍽️ Nutrição</h3>
+      <p><b>Autótrofos:</b> produzem o próprio alimento (algas, plantas, certas bactérias).</p>
+      <p><b>Heterótrofos:</b> não produzem; ingerem ou absorvem alimento (animais, fungos, protozoários, muitas bactérias).</p></div>
+    <div class="c"><h3>🔥 Respiração celular</h3>
+      <p>Acontece dentro das células (na <b>mitocôndria</b>) e libera energia:</p>
+      <p style="background:#0b2a1d;border:1px solid var(--green2);border-radius:8px;padding:8px 10px;text-align:center;color:#c9f6e3"><b>glicose + gás oxigênio → gás carbônico + água + energia</b></p></div>
+  </div>
+
+  <!-- 8 -->
+  <h2 class="sec">8 · Sensibilidade e resposta a estímulos</h2>
+  <p class="lead">Todos os seres vivos percebem <b>estímulos</b> (temperatura, luminosidade...) e <b>reagem</b> a eles.</p>
+  <div class="cards">
+    <div class="c"><h3>🌼 Nas plantas</h3>
+      <p>A <b>flor onze-horas</b> (<i>Portulaca grandiflora</i>) <b>abre</b> no sol pleno e <b>fecha</b> no fim da tarde — reação à <b>luz</b>.</p>
+      <p>A <b>dioneia</b> (do material da professora) fecha as folhas quando um inseto a toca.</p></div>
+    <div class="c"><h3>🐛 Nos animais</h3>
+      <p>Sentindo frio, certos animais se <b>expõem ao sol</b>. Órgãos de locomoção permitem fugir do perigo ou buscar alimento.</p></div>
+    <div class="c"><h3>🧭 Adaptações</h3>
+      <p>Características físicas ou de comportamento (como as asas das aves) que <b>favorecem a sobrevivência e a reprodução</b> no ambiente.</p></div>
+  </div>
+  <div class="pega">⚠️ <b>Estímulo × resposta:</b> o estímulo vem do ambiente (luz, frio, toque); a resposta é o que o ser vivo faz (a flor fechar, o animal se aquecer).</div>
+
+  <!-- 9 -->
+  <h2 class="sec">9 · Reprodução</h2>
+  <table>
+    <tr><th>&nbsp;</th><th>SEXUADA</th><th>ASSEXUADA</th></tr>
+    <tr><td><b>Indivíduos</b></td><td>Em geral <b>dois</b></td><td><b>Um</b> só</td></tr>
+    <tr><td><b>Como</b></td><td><b>Gametas</b> se unem na <b>fecundação</b> → <b>célula-ovo (zigoto)</b> → novo indivíduo</td><td>O indivíduo gera cópias de si</td></tr>
+    <tr><td><b>Descendentes</b></td><td><b>Combinação</b> dos pais → maior <b>variabilidade genética</b></td><td><b>Idênticos</b> ao original</td></tr>
+    <tr><td><b>Exemplos</b></td><td>Animais e plantas (fecundação interna ou externa)</td><td><b>Divisão binária</b> (bactérias, amebas); <b>fragmentação</b> (estrela-do-mar); <b>brotamento</b> (hidra)</td></tr>
+  </table>
+  <div class="postit">📌 <b>Guarde:</b> sexuada = mais <b>variabilidade</b>; assexuada = descendentes <b>idênticos</b>. As três formas assexuadas: divisão binária, fragmentação e brotamento.</div>
+
+  <!-- 10 -->
+  <h2 class="sec">10 · Níveis de organização</h2>
+  <p class="lead">Do menor para o maior, dentro de um ser vivo pluricelular:</p>
+  <div class="flips" id="flips2"></div>
+  <div class="postit">📌 <b>A escada:</b> célula → tecido → órgão → sistema → organismo. Ex.: célula muscular → tecido muscular → coração → sistema circulatório → o corpo. A hierarquia geral da vida vai dos <b>átomos até a biosfera</b>.</div>
+  <div class="pega">⚠️ <b>Ordem que confunde:</b> o <b>tecido</b> vem logo depois da <b>célula</b>. Um <b>órgão</b> é feito de vários tecidos; um <b>sistema</b> é feito de vários órgãos (ex.: sistema digestório = estômago + intestinos + pâncreas).</div>
+
+  <!-- glossário -->
+  <h2 class="sec">📚 Glossário relâmpago</h2>
+  <dl class="glos">
+    <dt>Célula</dt><dd>Unidade estrutural do ser vivo, responsável por sua forma e funcionamento.</dd>
+    <dt>Teoria celular</dt><dd>Todos os seres vivos são formados por células, e cada célula vem de outra preexistente.</dd>
+    <dt>Cromatina</dt><dd>O material genético (DNA) da célula; controla seu funcionamento e passa informações aos descendentes.</dd>
+    <dt>Carioteca (envoltório nuclear)</dt><dd>Membrana que separa a cromatina do citosol, delimitando o núcleo na célula eucariótica.</dd>
+    <dt>Organelas</dt><dd>Estruturas dentro do citoplasma da célula eucariótica, cada uma com uma função (ex.: mitocôndria, cloroplasto).</dd>
+    <dt>Metabolismo</dt><dd>Conjunto das transformações químicas no organismo (catabolismo quebra; anabolismo constrói).</dd>
+    <dt>Autótrofo × heterótrofo</dt><dd>Autótrofo produz o próprio alimento; heterótrofo precisa obtê-lo de outros seres.</dd>
+    <dt>Gameta</dt><dd>Célula especializada fornecida por cada indivíduo na reprodução sexuada.</dd>
+    <dt>Fecundação</dt><dd>União dos gametas, que forma a célula-ovo (zigoto).</dd>
+    <dt>Tecido</dt><dd>Agrupamento de células semelhantes que desempenham a mesma função.</dd>
+  </dl>
+
+  <!-- checklist -->
+  <h2 class="sec">✅ Checklist antes da prova</h2>
+  <div class="chk" id="chk"></div>
+  <div class="barra"><i id="fill"></i></div>
+  <div class="barlab" id="barlab">0 de 0 conferidos</div>
+
+  <a class="prox" href="simulado.html">Próximo passo → 📝 Simulado (28 questões)</a>
+  <p class="foot">Kit de Estudos · Ciências 6º ano · Colégio São José · Módulo 4 · fonte: livro <i>Ecos Ciências 6</i> (SM Aprendizagem) + material de revisão da professora</p>
+</div>
+
+<div class="modal" id="modal"><div class="box">
+  <h3 id="mtit"></h3><div id="mbody"></div>
+  <div class="acts"><button onclick="fecha()">Fechar</button><button class="ok" id="mok" style="display:none">Confirmar</button></div>
+</div></div>
+
+<script>
+/* ---------- flip cards: organelas ---------- */
+var F1=[
+ {f:"MITOCÔNDRIA", h:"clique para virar", b:"Responsável pela <b>respiração celular</b>, para obtenção de <b>energia</b>."},
+ {f:"RIBOSSOMO", h:"clique para virar", b:"Responsável pela <b>síntese (produção) de proteínas</b>."},
+ {f:"RETÍCULO ENDOPLASMÁTICO", h:"clique para virar", b:"Responsável pelo <b>transporte e distribuição de substâncias</b>. O rugoso ajuda na produção de proteínas; o liso produz lipídios."},
+ {f:"COMPLEXO GOLGIENSE", h:"clique para virar", b:"<b>Modifica, empacota e distribui</b> substâncias; participa da produção de carboidratos."},
+ {f:"LISOSSOMO", h:"clique para virar", b:"Responsável pela <b>digestão intracelular</b> (digere partículas e organelas gastas)."},
+ {f:"CENTRÍOLO", h:"clique para virar", b:"Participa da <b>divisão celular</b> e da organização dos microtúbulos."},
+ {f:"CLOROPLASTO", h:"clique para virar", b:"Realiza a <b>fotossíntese</b>: produz alimento com a energia da luz. Tem <b>clorofila</b> (cor verde). Só na célula <b>vegetal</b>."},
+ {f:"VACÚOLO", h:"clique para virar", b:"Armazena <b>água, sais minerais e outras substâncias</b>. Grande na célula <b>vegetal</b>, ajuda na sustentação."},
+ {f:"MEMBRANA PLASMÁTICA", h:"clique para virar", b:"Envolve a célula e <b>controla a entrada e a saída</b> de substâncias. Presente em <b>todas</b> as células."},
+ {f:"PAREDE CELULAR", h:"clique para virar", b:"Camada externa que <b>protege</b> e dá <b>forma e rigidez</b>. Só na célula <b>vegetal</b>."}
+];
+/* ---------- flip cards: níveis de organização ---------- */
+var F2=[
+ {f:"1 · CÉLULA", h:"clique para virar", b:"A menor unidade viva. Ex.: uma célula muscular."},
+ {f:"2 · TECIDO", h:"clique para virar", b:"Agrupamento de <b>células semelhantes</b> com a mesma função. Ex.: tecido muscular."},
+ {f:"3 · ÓRGÃO", h:"clique para virar", b:"Vários <b>tecidos</b> associados atuando juntos. Ex.: o coração; artérias e veias."},
+ {f:"4 · SISTEMA", h:"clique para virar", b:"Vários <b>órgãos</b> atuando juntos. Ex.: sistema digestório (estômago, intestinos, pâncreas)."},
+ {f:"5 · ORGANISMO", h:"clique para virar", b:"O <b>ser vivo inteiro</b>, com todos os sistemas interligados."}
+];
+function montaFlips(id,arr,pref){
+  var host=document.getElementById(id);
+  arr.forEach(function(o,i){
+    var d=document.createElement('div'); d.className='flip'; d.dataset.k=pref+i;
+    d.innerHTML='<div class="fin"><div class="face front">'+o.f+'<small>'+o.h+'</small></div><div class="face back">'+o.b+'</div></div>';
+    d.addEventListener('click',function(){ d.classList.toggle('on'); estado.flip[d.dataset.k]=d.classList.contains('on'); save(); });
+    host.appendChild(d);
+  });
+}
+
+/* ---------- checklist ---------- */
+var ITENS=[
+ "Sei explicar o que define um ser vivo e por que é o conjunto de características (não o movimento).",
+ "Sei as características comuns: células, metabolismo, ciclo de vida, resposta a estímulos, alimento, crescimento e reprodução.",
+ "Sei as etapas do ciclo de vida: nascer, crescer, reproduzir-se, envelhecer e morrer.",
+ "Sei que a célula é a unidade da vida e o que diz a teoria celular.",
+ "Sei as três partes da célula: membrana plasmática, citoplasma e cromatina.",
+ "Diferencio célula procariótica (bactéria) de eucariótica e sei o que é a carioteca.",
+ "Sei a função das organelas (mitocôndria, ribossomo, retículo, Golgi, lisossomo, centríolo, cloroplasto, vacúolo).",
+ "Sei o que só a célula vegetal tem: parede celular, cloroplastos e grandes vacúolos.",
+ "Diferencio seres unicelulares de pluricelulares e sei o que é um tecido.",
+ "Sei o que é metabolismo e a diferença entre catabolismo e anabolismo.",
+ "Diferencio autótrofos de heterótrofos e sei dar exemplos.",
+ "Sei a equação da respiração celular e onde ela acontece.",
+ "Sei explicar sensibilidade e resposta a estímulos (ex.: a flor onze-horas).",
+ "Diferencio reprodução sexuada de assexuada e conheço as três formas assexuadas.",
+ "Sei a ordem dos níveis de organização: célula → tecido → órgão → sistema → organismo."
+];
+
+/* ---------- estado ---------- */
+var KEY='cie6sj_resumo_v1', mem={};
+var estado={flip:{},chk:{},ts:null};
+function save(){ estado.ts=new Date().toISOString(); var s=JSON.stringify(estado);
+  try{ localStorage.setItem(KEY,s);}catch(e){ mem[KEY]=s; } stamp(); }
+function load(){ var r=null; try{ r=localStorage.getItem(KEY);}catch(e){}
+  if(!r) r=mem[KEY]||null;
+  if(r){ try{ var o=JSON.parse(r); estado.flip=o.flip||{}; estado.chk=o.chk||{}; estado.ts=o.ts||null; }catch(e){} } }
+function stamp(){ var el=document.getElementById('stamp');
+  if(!estado.ts){ el.textContent='Progresso salvo automaticamente.'; return; }
+  var d=new Date(estado.ts);
+  el.textContent='💾 Salvo em '+d.toLocaleDateString('pt-BR')+' às '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}); }
+
+/* ---------- modal ---------- */
+function abre(t,html,okTxt,onOk){ document.getElementById('mtit').innerHTML=t;
+  document.getElementById('mbody').innerHTML=html;
+  var ok=document.getElementById('mok');
+  if(okTxt){ ok.style.display=''; ok.textContent=okTxt; ok.onclick=onOk; } else ok.style.display='none';
+  document.getElementById('modal').classList.add('on'); }
+function fecha(){ document.getElementById('modal').classList.remove('on'); }
+function expo(){ abre('📥 Exportar progresso','<p style="font-size:14px;color:#9fc0b0">Copie o texto abaixo e guarde num bloco de notas.</p><textarea id="eTA" readonly>'+JSON.stringify(estado)+'</textarea>');
+  setTimeout(function(){var t=document.getElementById('eTA');t.focus();t.select();},80); }
+function impo(){ abre('📤 Importar progresso','<p style="font-size:14px;color:#9fc0b0">Cole aqui o texto exportado:</p><textarea id="iTA"></textarea>','Importar',function(){
+  try{ var o=JSON.parse(document.getElementById('iTA').value); estado.flip=o.flip||{}; estado.chk=o.chk||{}; save(); fecha(); aplica(); }
+  catch(e){ abre('⚠️ Não deu certo','<p>Esse texto não parece um arquivo de progresso válido.</p>'); } }); }
+function zerar(){ abre('🗑️ Zerar tudo','<p>Isso apaga os cartões virados e o checklist. Tem certeza?</p>','Sim, apagar',function(){
+  estado={flip:{},chk:{},ts:null};
+  try{ localStorage.removeItem(KEY);}catch(e){} delete mem[KEY];
+  fecha(); aplica(); stamp(); }); }
+
+/* ---------- aplicar estado ---------- */
+function aplica(){
+  Array.prototype.forEach.call(document.querySelectorAll('.flip'),function(d){
+    d.classList.toggle('on', !!estado.flip[d.dataset.k]);
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('#chk input'),function(i){
+    i.checked = !!estado.chk[i.dataset.i];
+    i.parentNode.querySelector('span').className = i.checked ? 'done' : '';
+  });
+  barra();
+}
+function barra(){
+  var n=0; ITENS.forEach(function(_,i){ if(estado.chk[i]) n++; });
+  document.getElementById('fill').style.width=(n/ITENS.length*100)+'%';
+  document.getElementById('barlab').textContent=n+' de '+ITENS.length+' conferidos';
+}
+(function(){
+  montaFlips('flips1',F1,'a');
+  montaFlips('flips2',F2,'b');
+  var host=document.getElementById('chk');
+  ITENS.forEach(function(t,i){
+    var l=document.createElement('label');
+    l.innerHTML='<input type="checkbox" data-i="'+i+'"><span>'+t+'</span>';
+    host.appendChild(l);
+    l.querySelector('input').addEventListener('change',function(){
+      estado.chk[i]=this.checked; save();
+      l.querySelector('span').className=this.checked?'done':'';
+      barra();
+    });
+  });
+  load(); aplica(); stamp();
+})();
+</script>
+</body>
+</html>
