@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulado — Ciências 6º ano | Colégio São José | Organização da Vida</title>
+<style>
+  :root{
+    --bg:#07130f; --card:#122019; --card2:#1a2c22;
+    --lime:#5cf2a8; --cyan:#3ad4e6; --teal:#1f9c7c; --green2:#178a63;
+    --pink:#ff77b0; --violet:#b98cff; --gold:#f5d97a; --red:#e2422f; --azul:#12324a;
+    --text:#eaf5ee; --muted:#9fc0b0; --line:#24382d;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:17px}
+  .wrap{max-width:860px;margin:0 auto;padding:0 16px 70px}
+  .save{position:sticky;top:0;z-index:30;background:#050d0a;border-bottom:1px solid var(--line);padding:8px 12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;font-size:13px}
+  .save span{color:var(--muted)}
+  .save button{background:var(--card2);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer}
+  .save button:hover{border-color:var(--lime)}
+  nav.mats{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:14px 0 6px}
+  nav.mats a{text-decoration:none;font-size:14px;padding:7px 14px;border-radius:20px;border:1px solid var(--line);color:var(--muted);background:var(--card)}
+  nav.mats a.on{background:var(--red);color:#fff;border-color:var(--red);font-weight:700}
+  nav.mats a:hover{border-color:var(--lime);color:var(--text)}
+  header.top{text-align:center;padding:24px 10px 10px;background:var(--azul);border-radius:0 0 16px 16px;border-bottom:4px solid var(--red)}
+  .badge{display:inline-block;font-size:12px;letter-spacing:2px;color:#fff;border:1px solid #7fb2d6;border-radius:20px;padding:6px 16px;text-transform:uppercase}
+  h1{font-size:31px;margin:12px 0 6px;color:#fff}
+  h1 .g{color:var(--cyan)}
+  .sub{color:#cfe0ee;font-size:16px;margin:0 auto;max-width:640px}
+  .intro{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin:20px 0}
+  .bar{height:12px;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin:16px 0 4px;position:sticky;top:44px;z-index:20}
+  .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--gold));transition:width .3s}
+  .barlab{text-align:center;color:var(--muted);font-size:14px;margin-bottom:18px}
+  .qz{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--red);border-radius:16px;padding:20px;margin:16px 0}
+  .qn{display:inline-block;font-size:12px;font-weight:800;background:var(--red);color:#fff;border-radius:20px;padding:4px 12px}
+  .tipo{display:inline-block;font-size:11px;font-weight:800;background:var(--violet);color:#100a20;border-radius:20px;padding:4px 10px;margin-left:6px;letter-spacing:1px}
+  .tema{float:right;font-size:12px;color:var(--teal);border:1px dashed var(--line);border-radius:20px;padding:4px 10px}
+  .qz h3{font-size:19px;margin:12px 0 12px;color:var(--text);font-weight:600;clear:both}
+  .afir{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:8px 14px;margin:0 0 12px}
+  .afir p{margin:8px 0;font-size:16px}
+  .afir .r{font-weight:800;color:var(--gold);margin-right:6px}
+  .opt{display:block;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;cursor:pointer;font-size:16px}
+  .opt:hover{border-color:var(--lime)}
+  .opt.sel{border-color:var(--red);background:#331a17}
+  .opt input{margin-right:10px}
+  .opt .l{font-weight:800;color:var(--gold);margin-right:6px}
+  .fim{text-align:center;margin:26px 0}
+  .btn{background:var(--red);color:#fff;border:none;border-radius:14px;padding:16px 34px;font-size:19px;font-weight:800;cursor:pointer}
+  .btn[disabled]{background:#243028;color:#6d7d72;cursor:not-allowed}
+  .res{display:none;background:var(--card);border:2px solid var(--gold);border-radius:18px;padding:24px;text-align:center;margin:24px 0}
+  .res h2{margin:0 0 6px;color:var(--gold);font-size:26px}
+  .placar{font-size:42px;font-weight:800;color:var(--red);margin:6px 0}
+  .codigo{font-size:26px;font-weight:800;letter-spacing:3px;color:#04201f;background:var(--gold);display:inline-block;padding:10px 22px;border-radius:12px;margin:12px 0}
+  .gab{display:none}
+  .gab h2{color:var(--gold);text-align:center;margin:30px 0 10px}
+  .cert{border-left:5px solid var(--lime)!important}
+  .errou{border-left:5px solid var(--red)!important}
+  .a{border-radius:10px;padding:11px 14px;margin:8px 0;font-size:16px}
+  .a.ok{background:#0b2a1d;border:1px solid var(--green2);color:#c9f6e3}
+  .a.no{background:#221c17;border:1px solid var(--line);color:var(--muted)}
+  .a .l{font-weight:800;margin-right:6px}
+  .a.ok .l{color:var(--lime)}
+  .a .why{display:block;font-size:14px;margin-top:5px;opacity:.95}
+  .sua{display:inline-block;font-size:12px;font-weight:700;border-radius:12px;padding:2px 8px;margin-left:8px}
+  .sua.v{background:var(--green2);color:#fff}
+  .sua.x{background:var(--red);color:#fff}
+  .volta{display:block;text-align:center;text-decoration:none;background:var(--cyan);color:#04201f;font-weight:800;border-radius:14px;padding:16px;margin-top:24px;font-size:18px}
+  .foot{text-align:center;color:var(--muted);font-size:13px;margin-top:26px}
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;z-index:60;padding:18px}
+  .modal.on{display:flex}
+  .modal .box{background:var(--card);border:1px solid var(--red);border-radius:16px;padding:22px;max-width:460px;width:100%}
+  .modal h3{margin:0 0 10px;color:var(--red)}
+  .modal textarea{width:100%;min-height:110px;background:#081410;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:10px;font-size:13px}
+  .modal .acts{display:flex;gap:10px;justify-content:flex-end;margin-top:14px}
+  .modal .acts button{border-radius:8px;padding:10px 16px;font-size:15px;cursor:pointer;background:var(--card2);color:var(--text);border:1px solid var(--line)}
+  .modal .acts button.ok{background:var(--red);color:#fff;font-weight:700;border-color:var(--red)}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+</style>
+</head>
+<body>
+<h2 class="sr-only">Simulado de Ciências do 6º ano do Colégio São José sobre a organização da vida.</h2>
+
+<div class="save">
+  <span id="stamp">Respostas salvas automaticamente.</span>
+  <button onclick="expo()">📥 Exportar</button>
+  <button onclick="impo()">📤 Importar</button>
+  <button onclick="zerar()">🗑️ Zerar tudo</button>
+</div>
+
+<div class="wrap">
+  <nav class="mats">
+    <a href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a href="quiz.html">🎯 Quiz</a>
+    <a href="resumo.html">🗺️ Resumo</a>
+    <a class="on" href="simulado.html">📝 Simulado</a>
+  </nav>
+
+  <header class="top">
+    <div class="badge">📝 Desafio final da Sonda Bioluz</div>
+    <h1>Simulado de <span class="g">Ciências</span><br>Organização da Vida</h1>
+    <p class="sub">6º ano · <b>Colégio São José</b> · Módulo 4 · 28 questões no estilo da prova (com questões de afirmativas I, II, III e IV) · Prova em 25/08/2026</p>
+  </header>
+
+  <div class="intro">
+    <p style="margin:0">São <b>28 questões</b>. Algumas são objetivas e outras trazem <b>afirmativas numeradas (I, II, III, IV)</b> — leia cada afirmativa e escolha a alternativa correta. No fim, clique em <b>“Ver meu resultado”</b>: você recebe o <b>placar</b>, o <b>código</b> (<b>SIM-XX-YY</b>) para a sua mãe e o <b>gabarito comentado</b>. Tudo fica salvo sozinho. 🔬</p>
+  </div>
+
+  <div class="bar"><i id="fill"></i></div>
+  <div class="barlab" id="barlab">0 de 28 respondidas</div>
+
+  <div id="lista"></div>
+
+  <div class="fim"><button class="btn" id="ver" disabled>Ver meu resultado</button>
+    <p class="barlab" id="aviso">Responda todas as 28 questões para liberar o resultado.</p></div>
+
+  <div class="res" id="res">
+    <h2>🏆 Resultado do simulado</h2>
+    <div class="placar" id="placar">0 / 28</div>
+    <p id="frase" style="color:var(--muted);margin:0"></p>
+    <p style="margin:14px 0 0;color:var(--muted);font-size:15px">Código de conclusão (mostre à sua mãe):</p>
+    <div class="codigo" id="codigo">SIM-00-XX</div>
+    <p style="color:var(--muted);font-size:14px;margin:0">Role a página para ver o gabarito comentado. 👇</p>
+  </div>
+
+  <div class="gab" id="gab">
+    <h2>📋 Gabarito comentado</h2>
+    <div id="gablista"></div>
+    <a class="volta" href="resumo.html">Errou alguma? Volte ao 🗺️ Resumo e revise o tema.</a>
+  </div>
+
+  <p class="foot">Kit de Estudos · Ciências 6º ano · Colégio São José · Organização da Vida</p>
+</div>
+
+<div class="modal" id="modal"><div class="box">
+  <h3 id="mtit"></h3><div id="mbody"></div>
+  <div class="acts"><button onclick="fecha()">Fechar</button><button class="ok" id="mok" style="display:none">Confirmar</button></div>
+</div></div>
+
+<script>
+/* ================= BANCO DE QUESTÕES =================
+   o = alternativas: t (texto), ok (true se correta), w (comentário).
+   Embaralhadas com semente fixa; a correta é identificada por ok. */
+var Q=[
+{tema:"Seres vivos",
+ e:"Os seres vivos e os elementos não vivos fazem parte do meio ambiente. O que, principalmente, diferencia os seres vivos da matéria não viva?",
+ o:[{t:"Apresentarem material genético, entre outras características da vida",ok:true,w:"Além do material genético, os seres vivos têm células, metabolismo, ciclo de vida, resposta a estímulos e reprodução."},
+    {t:"Serem sempre maiores do que os elementos não vivos",w:"Existem seres vivos microscópicos, menores que muitos objetos não vivos."},
+    {t:"Nunca precisarem de água",w:"A água é uma das substâncias mais importantes que entram na composição dos seres vivos."},
+    {t:"Se moverem o tempo todo",w:"O movimento não define a vida: plantas quase não se movem e são vivas."}]},
+
+{tema:"Características",
+ e:"Assinale a alternativa que apresenta apenas características comuns a todos os seres vivos:",
+ o:[{t:"Ser formado por células, realizar metabolismo, ter ciclo de vida e reproduzir-se",ok:true,w:"É o conjunto dessas características que define a vida."},
+    {t:"Ter penas, viver na água e voar",w:"São características de alguns seres apenas, não de todos os seres vivos."},
+    {t:"Ser feito de metal e conduzir eletricidade",w:"Essas são propriedades de materiais não vivos."},
+    {t:"Ter rodas e usar combustível",w:"São características de máquinas, que não são seres vivos."}]},
+
+{tipo:"AFIRMATIVAS", tema:"Características dos seres vivos",
+ e:"Analise as afirmativas sobre as características dos seres vivos:",
+ af:["Todos os seres vivos são formados por células.",
+     "Os seres vivos realizam metabolismo, que é o conjunto de transformações químicas do organismo.",
+     "Somente os animais apresentam ciclo de vida.",
+     "Os seres vivos respondem a estímulos do ambiente, como variações de temperatura e luminosidade."],
+ o:[{t:"Apenas I, II e IV estão corretas",ok:true,w:"A afirmativa III é a única errada: todos os seres vivos, e não só os animais, têm ciclo de vida."},
+    {t:"Apenas I e II estão corretas",w:"A afirmativa IV também está correta: os seres vivos respondem a estímulos do ambiente."},
+    {t:"Apenas III e IV estão corretas",w:"A afirmativa III está errada e a I está correta; logo esta alternativa erra."},
+    {t:"Todas as afirmativas estão corretas",w:"A afirmativa III está errada: o ciclo de vida existe em todos os seres vivos."}]},
+
+{tema:"Ciclo de vida",
+ e:"Sobre o ciclo de vida dos seres vivos, é correto afirmar que:",
+ o:[{t:"Tem as etapas de nascer, crescer, reproduzir-se, envelhecer e morrer, e sua duração varia entre as espécies",ok:true,w:"A araucária vive centenas de anos; certas borboletas, cerca de uma semana."},
+    {t:"É igual para todas as espécies, sempre com a mesma duração",w:"A duração varia muito: compare a araucária com uma borboleta."},
+    {t:"Começa pela morte e termina no nascimento",w:"A ordem é nascer, crescer, reproduzir-se, envelhecer e morrer."},
+    {t:"Só existe nas plantas",w:"O ciclo de vida existe em todos os seres vivos."}]},
+
+{tema:"Teoria celular",
+ e:"A teoria celular, proposta no século XIX, afirma que:",
+ o:[{t:"Todos os seres vivos são formados por células e cada célula se origina de outra preexistente",ok:true,w:"Por isso as células têm capacidade de reprodução."},
+    {t:"As células surgem do nada, a partir de matéria não viva",w:"A teoria diz o contrário: toda célula vem de outra célula preexistente."},
+    {t:"Apenas alguns seres vivos são formados por células",w:"Todos os seres vivos são formados por células."},
+    {t:"A célula é a maior estrutura do corpo",w:"A célula é a menor unidade estrutural; é bem menor que um tecido ou órgão."}]},
+
+{tema:"Partes da célula",
+ e:"De acordo com o livro, todas as células apresentam uma estrutura básica formada por três componentes. São eles:",
+ o:[{t:"Membrana plasmática, citoplasma e cromatina",ok:true,w:"A cromatina é o material genético (DNA)."},
+    {t:"Parede celular, cloroplasto e vacúolo",w:"São estruturas típicas da célula vegetal, não os três componentes básicos de toda célula."},
+    {t:"Boca, estômago e intestino",w:"Esses são órgãos do corpo, não partes de uma célula."},
+    {t:"Água, ar e luz",w:"São elementos do ambiente, não as três partes básicas da célula."}]},
+
+{tema:"Membrana plasmática",
+ e:"A película muito fina que envolve a célula, separa o interior do ambiente externo e controla a entrada e a saída de substâncias é:",
+ o:[{t:"A membrana plasmática",ok:true,w:"Está presente em todas as células."},
+    {t:"A cromatina",w:"A cromatina é o material genético (DNA) da célula."},
+    {t:"O citoplasma",w:"O citoplasma é o espaço interno (citosol) onde ficam as organelas."},
+    {t:"O cloroplasto",w:"O cloroplasto é a organela que faz a fotossíntese na célula vegetal."}]},
+
+{tema:"Citoplasma",
+ e:"O espaço ocupado pelo citosol, substância viscosa onde ficam as organelas, é chamado de:",
+ o:[{t:"Citoplasma",ok:true,w:"É no citoplasma que ocorre grande parte das reações químicas da célula."},
+    {t:"Núcleo",w:"O núcleo guarda a cromatina (material genético); não é o citosol."},
+    {t:"Parede celular",w:"A parede celular é a camada externa da célula vegetal."},
+    {t:"Membrana plasmática",w:"A membrana envolve a célula; o citosol fica no interior, no citoplasma."}]},
+
+{tema:"Cromatina",
+ e:"O que é a cromatina e qual é a sua importância?",
+ o:[{t:"É o material genético, composto de DNA, que controla o funcionamento da célula e passa informações aos descendentes",ok:true,w:"Na maioria das células, ela fica separada do citoplasma pelo envoltório nuclear."},
+    {t:"É a organela que produz energia por respiração",w:"Quem produz energia é a mitocôndria."},
+    {t:"É a camada que dá rigidez à célula vegetal",w:"Isso é a parede celular, não a cromatina."},
+    {t:"É a substância que controla a entrada e a saída de substâncias",w:"Quem faz esse controle é a membrana plasmática."}]},
+
+{tema:"Tipos de célula",
+ e:"A célula da bactéria não possui envoltório nuclear e seu material genético fica solto no citosol. Esse tipo de célula é chamado de:",
+ o:[{t:"Procariótica",ok:true,w:"Nas células procarióticas a cromatina não é delimitada por um envoltório."},
+    {t:"Eucariótica",w:"A eucariótica tem carioteca e núcleo delimitado, ao contrário da bactéria."},
+    {t:"Vegetal",w:"'Vegetal' se refere à célula das plantas, que é eucariótica."},
+    {t:"Muscular",w:"Célula muscular é um tipo de célula do corpo dos animais, e é eucariótica."}]},
+
+{tema:"Carioteca",
+ e:"Na célula eucariótica, a estrutura que separa a cromatina do citosol e delimita o núcleo celular é:",
+ o:[{t:"A carioteca (envoltório nuclear)",ok:true,w:"'Eucariótica' vem do latim eu = 'verdadeiro': tem núcleo verdadeiro, delimitado."},
+    {t:"A membrana plasmática",w:"A membrana plasmática envolve a célula toda, não apenas o núcleo."},
+    {t:"O vacúolo",w:"O vacúolo armazena água e substâncias, principalmente na célula vegetal."},
+    {t:"O ribossomo",w:"O ribossomo produz proteínas; não delimita o núcleo."}]},
+
+{tipo:"AFIRMATIVAS", tema:"Organelas",
+ e:"Analise as afirmativas sobre as organelas celulares:",
+ af:["A mitocôndria é responsável pela respiração celular, para a obtenção de energia.",
+     "O ribossomo é responsável pela produção de proteínas.",
+     "O lisossomo é responsável pela digestão dentro da célula.",
+     "O cloroplasto é responsável por controlar a entrada e a saída de substâncias na célula."],
+ o:[{t:"Apenas I, II e III estão corretas",ok:true,w:"A afirmativa IV está errada: quem controla a entrada e a saída é a membrana plasmática; o cloroplasto faz a fotossíntese."},
+    {t:"Apenas I e II estão corretas",w:"A afirmativa III também está correta: o lisossomo faz a digestão intracelular."},
+    {t:"Apenas II e IV estão corretas",w:"A afirmativa IV está errada e a I está correta; logo esta alternativa erra."},
+    {t:"Todas as afirmativas estão corretas",w:"A afirmativa IV está errada: o cloroplasto faz a fotossíntese, não o controle de substâncias."}]},
+
+{tema:"Mitocôndria",
+ e:"A organela responsável pela respiração celular, que fornece energia à célula, é:",
+ o:[{t:"A mitocôndria",ok:true,w:"É nela que ocorre a respiração celular."},
+    {t:"O complexo golgiense",w:"O complexo golgiense modifica, empacota e distribui substâncias."},
+    {t:"O centríolo",w:"O centríolo participa da divisão celular."},
+    {t:"A parede celular",w:"A parede celular protege e dá rigidez à célula vegetal."}]},
+
+{tema:"Cloroplasto",
+ e:"O cloroplasto é a organela que:",
+ o:[{t:"Realiza a fotossíntese, produzindo alimento com a energia da luz, e dá a cor verde às plantas",ok:true,w:"Ele contém a clorofila e está presente na célula vegetal."},
+    {t:"Faz a respiração celular para liberar energia",w:"A respiração celular é feita pela mitocôndria."},
+    {t:"Digere partículas dentro da célula",w:"A digestão intracelular é feita pelo lisossomo."},
+    {t:"Produz as proteínas da célula",w:"A produção de proteínas é feita pelos ribossomos."}]},
+
+{tema:"Organelas",
+ e:"Relacione corretamente a organela à sua função:",
+ o:[{t:"Ribossomo → produção de proteínas; lisossomo → digestão intracelular",ok:true,w:"São funções distintas: um fabrica proteínas e o outro faz digestão."},
+    {t:"Ribossomo → fotossíntese; lisossomo → respiração",w:"Fotossíntese é do cloroplasto e respiração é da mitocôndria."},
+    {t:"Ribossomo → digestão; lisossomo → produção de proteínas",w:"As funções estão trocadas."},
+    {t:"Ribossomo → armazenar água; lisossomo → dar rigidez",w:"Armazenar água é do vacúolo; dar rigidez é da parede celular."}]},
+
+{tema:"Animal x vegetal",
+ e:"Quais estruturas estão presentes na célula vegetal e ausentes na célula animal?",
+ o:[{t:"Parede celular, cloroplastos e grandes vacúolos",ok:true,w:"A célula animal não apresenta essas três estruturas."},
+    {t:"Núcleo, mitocôndrias e ribossomos",w:"Essas estruturas existem nas duas células."},
+    {t:"Membrana plasmática e citoplasma",w:"Membrana e citoplasma existem nas duas células."},
+    {t:"Cromatina e citosol",w:"Cromatina e citosol existem nas duas células."}]},
+
+{tema:"Uni e pluricelular",
+ e:"Sobre seres unicelulares e pluricelulares, assinale a alternativa correta:",
+ o:[{t:"Unicelulares têm uma única célula (bactérias, protozoários); pluricelulares têm várias células (animais, plantas)",ok:true,w:"A ameba (Amoeba proteus) é um exemplo de protozoário unicelular."},
+    {t:"Unicelulares são sempre maiores que os pluricelulares",w:"Ao contrário: os unicelulares costumam ser microscópicos."},
+    {t:"Todos os seres vivos são unicelulares",w:"Os animais e as plantas, por exemplo, são pluricelulares."},
+    {t:"Pluricelular significa ter uma só célula",w:"Pluricelular significa ter várias células."}]},
+
+{tema:"Tecidos",
+ e:"O que é um tecido?",
+ o:[{t:"Um agrupamento de células semelhantes que desempenham a mesma função",ok:true,w:"Exemplo: o tecido muscular, formado por células que se contraem e relaxam."},
+    {t:"Um conjunto de vários órgãos diferentes",w:"O conjunto de órgãos forma um sistema, não um tecido."},
+    {t:"Uma única célula isolada",w:"Uma célula sozinha não é um tecido; o tecido é um agrupamento de células."},
+    {t:"O ser vivo inteiro",w:"O ser vivo inteiro é o organismo, o último nível de organização."}]},
+
+{tema:"Metabolismo",
+ e:"O metabolismo tem duas vias. Assinale a alternativa correta:",
+ o:[{t:"O catabolismo quebra moléculas complexas em simples; o anabolismo forma moléculas complexas a partir de simples",ok:true,w:"Fotossíntese, digestão e contração muscular são exemplos de atividades metabólicas."},
+    {t:"O catabolismo constrói e o anabolismo destrói moléculas",w:"Está invertido: catabolismo quebra e anabolismo constrói."},
+    {t:"As duas vias apenas transportam substâncias, sem transformá-las",w:"O metabolismo envolve transformações químicas, não só transporte."},
+    {t:"As duas vias só ocorrem em seres não vivos",w:"O metabolismo é uma característica dos seres vivos."}]},
+
+{tema:"Composição química",
+ e:"Entre as substâncias que entram na composição dos seres vivos, o livro cita:",
+ o:[{t:"Água, sais minerais, proteínas e carboidratos",ok:true,w:"Essas substâncias passam por transformações químicas no interior do organismo."},
+    {t:"Plástico, metal e vidro",w:"São materiais não vivos, que não fazem parte da composição dos seres vivos."},
+    {t:"Areia, argila e brita",w:"São materiais do solo e das rochas, não da composição dos seres vivos."},
+    {t:"Fumaça, poeira e fuligem",w:"Não são as substâncias que compõem os seres vivos citadas no livro."}]},
+
+{tema:"Nutrição",
+ e:"Sobre autótrofos e heterótrofos, é correto afirmar que:",
+ o:[{t:"Autótrofos produzem o próprio alimento (algas, plantas, certas bactérias); heterótrofos não produzem (animais, fungos, protozoários)",ok:true,w:"Os heterótrofos precisam ingerir ou absorver a matéria orgânica produzida pelos autótrofos."},
+    {t:"Autótrofos não produzem alimento e heterótrofos produzem",w:"Está trocado: quem produz o próprio alimento é o autótrofo."},
+    {t:"Todos os seres vivos são autótrofos",w:"Animais e fungos, por exemplo, são heterótrofos."},
+    {t:"Só as bactérias são heterótrofas",w:"Animais, fungos e protozoários também são heterótrofos."}]},
+
+{tema:"Respiração celular",
+ e:"Qual equação representa corretamente a respiração celular?",
+ o:[{t:"Glicose + gás oxigênio → gás carbônico + água + energia",ok:true,w:"Ela ocorre dentro das células (na mitocôndria) e libera a energia usada pelo ser vivo."},
+    {t:"Gás carbônico + água → glicose + gás oxigênio",w:"Essa é a fotossíntese, o processo inverso, feito pelos cloroplastos."},
+    {t:"Proteína + água → sais minerais + luz",w:"Essa combinação não representa a respiração celular."},
+    {t:"Glicose → cloroplasto + parede celular",w:"A respiração libera energia, gás carbônico e água; não fabrica estruturas da célula."}]},
+
+{tema:"Estímulos",
+ e:"A flor onze-horas (Portulaca grandiflora) abre nas horas de sol pleno e fecha no fim da tarde. Esse comportamento é um exemplo de:",
+ o:[{t:"Resposta a um estímulo do ambiente (a luz)",ok:true,w:"O estímulo é a luz; a resposta é a flor abrir ou fechar."},
+    {t:"Reprodução assexuada da planta",w:"Abrir e fechar a flor não é reprodução; é uma resposta a estímulo."},
+    {t:"Fotossíntese realizada pela flor",w:"A fotossíntese ocorre nos cloroplastos das folhas; aqui trata-se de reação à luz."},
+    {t:"Falta de material genético na planta",w:"Todas as plantas têm material genético; isso não tem relação com o movimento da flor."}]},
+
+{tipo:"AFIRMATIVAS", tema:"Reprodução",
+ e:"Analise as afirmativas sobre a reprodução dos seres vivos:",
+ af:["Na reprodução sexuada, em geral, dois indivíduos fornecem gametas que se unem na fecundação.",
+     "A união dos gametas forma a célula-ovo, ou zigoto, que dará origem a um novo indivíduo.",
+     "A reprodução sexuada promove maior variabilidade genética.",
+     "Na reprodução assexuada, os descendentes são sempre muito diferentes do indivíduo que os gerou."],
+ o:[{t:"Apenas I, II e III estão corretas",ok:true,w:"A afirmativa IV está errada: na reprodução assexuada os descendentes são idênticos ao indivíduo original."},
+    {t:"Apenas I e IV estão corretas",w:"A afirmativa IV está errada e as afirmativas II e III estão corretas."},
+    {t:"Apenas II e III estão corretas",w:"A afirmativa I também está correta: a sexuada envolve, em geral, dois indivíduos e gametas."},
+    {t:"Todas as afirmativas estão corretas",w:"A afirmativa IV está errada: na assexuada os descendentes são idênticos, não diferentes."}]},
+
+{tema:"Reprodução sexuada",
+ e:"Na reprodução sexuada, a nova célula formada pela união dos gametas na fecundação é chamada de:",
+ o:[{t:"Célula-ovo (ou zigoto)",ok:true,w:"Ela se desenvolve e dá origem a um novo indivíduo, com uma combinação das características dos pais."},
+    {t:"Bactéria",w:"Bactéria é um ser unicelular procarionte, não a célula formada na fecundação."},
+    {t:"Tecido",w:"Tecido é um agrupamento de células, não a célula formada na fecundação."},
+    {t:"Cloroplasto",w:"Cloroplasto é uma organela da célula vegetal."}]},
+
+{tema:"Reprodução assexuada",
+ e:"São exemplos de reprodução assexuada:",
+ o:[{t:"Divisão binária (bactérias e amebas), fragmentação (estrela-do-mar) e brotamento (hidra)",ok:true,w:"Em todas elas, um único indivíduo gera descendentes idênticos a ele."},
+    {t:"Apenas a união de gametas de dois indivíduos",w:"A união de gametas é a reprodução sexuada, não a assexuada."},
+    {t:"A fecundação interna e a fecundação externa",w:"Fecundação (interna ou externa) faz parte da reprodução sexuada."},
+    {t:"A fotossíntese e a respiração celular",w:"São processos do metabolismo, não formas de reprodução."}]},
+
+{tema:"Níveis de organização",
+ e:"Qual é a ordem correta dos níveis de organização, do menor para o maior?",
+ o:[{t:"Célula → tecido → órgão → sistema → organismo",ok:true,w:"Ex.: célula muscular → tecido muscular → coração → sistema circulatório → o corpo."},
+    {t:"Órgão → sistema → célula → tecido → organismo",w:"A ordem está embaralhada: a célula é o menor nível e vem primeiro."},
+    {t:"Organismo → sistema → órgão → tecido → célula",w:"Essa é a ordem do maior para o menor; a pergunta pede do menor para o maior."},
+    {t:"Tecido → célula → organismo → órgão → sistema",w:"A célula vem antes do tecido, pois o tecido é feito de células."}]},
+
+{tema:"Sistemas",
+ e:"Como diferentes órgãos formam um sistema? Assinale o exemplo correto.",
+ o:[{t:"Vários órgãos atuam juntos numa função; ex.: estômago, intestinos e pâncreas formam o sistema digestório",ok:true,w:"Os sistemas estão interligados e são essenciais para o funcionamento do organismo."},
+    {t:"Uma única célula forma sozinha um sistema",w:"Um sistema é formado por vários órgãos, que são feitos de tecidos e células."},
+    {t:"Os rins e a bexiga fazem parte do sistema digestório",w:"Rins e bexiga fazem parte do sistema urinário, não do digestório."},
+    {t:"Cada tecido funciona isolado, sem formar órgãos",w:"Os tecidos se associam para formar os órgãos, que formam os sistemas."}]}
+];
+
+/* ================= estado ================= */
+var KEY='cie6sj_simulado_v1', mem={};
+var estado={resp:{},codigo:null,codAcertos:null,visto:false,ts:null};
+var ORD=[];
+function rng(seed){ var s=(seed>>>0);
+  function nx(){ s^=s<<13; s>>>=0; s^=s>>17; s^=s<<5; s>>>=0; return s/4294967296; }
+  for(var w=0;w<10;w++) nx();
+  return nx; }
+function embaralha(arr,seed){ var a=arr.slice(), r=rng(seed);
+  for(var i=a.length-1;i>0;i--){ var j=Math.floor(r()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; }
+  return a; }
+Q.forEach(function(q,i){ ORD.push(embaralha(q.o, 6101+i*907)); });
+
+function save(){ estado.ts=new Date().toISOString(); var s=JSON.stringify(estado);
+  try{ localStorage.setItem(KEY,s);}catch(e){ mem[KEY]=s; } stamp(); }
+function load(){ var r=null; try{ r=localStorage.getItem(KEY);}catch(e){}
+  if(!r) r=mem[KEY]||null;
+  if(r){ try{ var o=JSON.parse(r); estado.resp=o.resp||{}; estado.codigo=o.codigo||null; estado.codAcertos=(o.codAcertos===0||o.codAcertos)?o.codAcertos:null; estado.visto=!!o.visto; estado.ts=o.ts||null; }catch(e){} } }
+function stamp(){ var el=document.getElementById('stamp');
+  if(!estado.ts){ el.textContent='Respostas salvas automaticamente.'; return; }
+  var d=new Date(estado.ts);
+  el.textContent='💾 Salvo em '+d.toLocaleDateString('pt-BR')+' às '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}); }
+
+/* ================= modal ================= */
+function abre(t,html,okTxt,onOk){ document.getElementById('mtit').innerHTML=t;
+  document.getElementById('mbody').innerHTML=html;
+  var ok=document.getElementById('mok');
+  if(okTxt){ ok.style.display=''; ok.textContent=okTxt; ok.onclick=onOk; } else ok.style.display='none';
+  document.getElementById('modal').classList.add('on'); }
+function fecha(){ document.getElementById('modal').classList.remove('on'); }
+function expo(){ abre('📥 Exportar progresso','<p style="font-size:14px;color:#9fc0b0">Copie o texto abaixo e guarde.</p><textarea id="eTA" readonly>'+JSON.stringify(estado)+'</textarea>');
+  setTimeout(function(){var t=document.getElementById('eTA');t.focus();t.select();},80); }
+function impo(){ abre('📤 Importar progresso','<p style="font-size:14px;color:#9fc0b0">Cole aqui o texto exportado:</p><textarea id="iTA"></textarea>','Importar',function(){
+  try{ var o=JSON.parse(document.getElementById('iTA').value); estado.resp=o.resp||{}; estado.codigo=o.codigo||null; estado.codAcertos=o.codAcertos; estado.visto=!!o.visto; save(); fecha(); render(); if(estado.visto) resultado(true); }
+  catch(e){ abre('⚠️ Não deu certo','<p>Esse texto não parece um arquivo de progresso válido.</p>'); } }); }
+function zerar(){ abre('🗑️ Zerar tudo','<p>Isso apaga suas respostas e o código deste simulado. Tem certeza?</p>','Sim, apagar',function(){
+  estado={resp:{},codigo:null,codAcertos:null,visto:false,ts:null};
+  try{ localStorage.removeItem(KEY);}catch(e){} delete mem[KEY];
+  document.getElementById('res').style.display='none'; document.getElementById('gab').style.display='none';
+  fecha(); render(); stamp(); window.scrollTo({top:0,behavior:'smooth'}); }); }
+
+/* ================= render ================= */
+var L=['A','B','C','D'], R=['I','II','III','IV'];
+function cabec(q,i){
+  var h='<span class="qn">QUESTÃO '+(i+1)+'</span>';
+  if(q.tipo) h+='<span class="tipo">'+q.tipo+'</span>';
+  h+='<span class="tema">'+q.tema+'</span><h3>'+q.e+'</h3>';
+  if(q.af){ h+='<div class="afir">';
+    q.af.forEach(function(a,k){ h+='<p><span class="r">'+R[k]+'.</span>'+a+'</p>'; });
+    h+='</div>'; }
+  return h;
+}
+function render(){
+  var host=document.getElementById('lista'); host.innerHTML='';
+  Q.forEach(function(q,i){
+    var d=document.createElement('div'); d.className='qz';
+    var h=cabec(q,i);
+    ORD[i].forEach(function(o,k){
+      var sel=(estado.resp[i]===k)?' sel':'';
+      h+='<label class="opt'+sel+'" data-q="'+i+'" data-k="'+k+'"><input type="radio" name="q'+i+'"'+(sel?' checked':'')+'><span class="l">'+L[k]+')</span>'+o.t+'</label>';
+    });
+    d.innerHTML=h; host.appendChild(d);
+  });
+  Array.prototype.forEach.call(host.querySelectorAll('.opt'),function(el){
+    el.addEventListener('click',function(){
+      estado.resp[+el.dataset.q]=+el.dataset.k; save(); render();
+    });
+  });
+  progresso();
+}
+function progresso(){
+  var n=Object.keys(estado.resp).length;
+  document.getElementById('fill').style.width=(n/Q.length*100)+'%';
+  document.getElementById('barlab').textContent=n+' de '+Q.length+' respondidas';
+  var b=document.getElementById('ver'); b.disabled=(n<Q.length);
+  document.getElementById('aviso').textContent = (n<Q.length) ? 'Responda todas as '+Q.length+' questões para liberar o resultado.' : 'Tudo respondido! Pode conferir. 🔬';
+}
+function corretaDe(i){ for(var k=0;k<ORD[i].length;k++){ if(ORD[i][k].ok) return k; } return -1; }
+function gerarCodigo(ac){
+  if(estado.codigo && estado.codAcertos===ac) return estado.codigo;
+  var letras='ABCDEFGHJKLMNPQRSTUVWXYZ'; /* sem I e sem O */
+  var yy=letras.charAt(Math.floor(Math.random()*letras.length))+letras.charAt(Math.floor(Math.random()*letras.length));
+  var xx=(ac<10?'0':'')+ac;
+  estado.codigo='SIM-'+xx+'-'+yy; estado.codAcertos=ac; save();
+  return estado.codigo;
+}
+function resultado(silencioso){
+  var ac=0;
+  Q.forEach(function(q,i){ if(estado.resp[i]===corretaDe(i)) ac++; });
+  estado.visto=true; save();
+  document.getElementById('placar').textContent=ac+' / '+Q.length;
+  var pct=ac/Q.length;
+  document.getElementById('frase').textContent = pct>=0.9?'Expedição impecável. Pode encarar a prova de 25/08 com tranquilidade. 🔬'
+    : pct>=0.75?'Muito bom! Reveja no Resumo apenas os temas que escaparam.'
+    : pct>=0.6?'Base sólida, mas precisa de mais uma volta pelo Resumo antes da prova.'
+    : 'Sem drama: volte à Leitura Guiada, refaça o Quiz e depois tente o Simulado de novo.';
+  document.getElementById('codigo').textContent=gerarCodigo(ac);
+  document.getElementById('res').style.display='block';
+
+  var g=document.getElementById('gablista'); g.innerHTML='';
+  Q.forEach(function(q,i){
+    var c=corretaDe(i), sua=estado.resp[i], acertou=(sua===c);
+    var d=document.createElement('div'); d.className='qz '+(acertou?'cert':'errou');
+    var h=cabec(q,i);
+    ORD[i].forEach(function(o,k){
+      var cls=o.ok?'a ok':'a no', tag='';
+      if(k===sua) tag='<span class="sua '+(o.ok?'v':'x')+'">'+(o.ok?'sua resposta ✔':'sua resposta ✘')+'</span>';
+      h+='<div class="'+cls+'"><span class="l">'+L[k]+')</span>'+o.t+tag+'<span class="why">'+(o.ok?'✅ CORRETA — ':'❌ ')+o.w+'</span></div>';
+    });
+    d.innerHTML=h; g.appendChild(d);
+  });
+  document.getElementById('gab').style.display='block';
+  if(!silencioso) document.getElementById('res').scrollIntoView({behavior:'smooth',block:'start'});
+}
+document.getElementById('ver').addEventListener('click',function(){ resultado(false); });
+(function(){ load(); render(); stamp(); if(estado.visto && Object.keys(estado.resp).length===Q.length) resultado(true); })();
+</script>
+</body>
+</html>
